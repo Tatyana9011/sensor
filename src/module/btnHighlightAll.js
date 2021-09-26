@@ -4,24 +4,21 @@
 function highlightBtn() {
   const removeBtn = document.getElementById('removeAll');
   const rowTable = document.querySelectorAll('.row-table');
-
-  removeBtn.addEventListener('click', event => {
-    if (removeBtn.checked === true) {
-      if (rowTable) {
+  if (removeBtn) {
+    removeBtn.addEventListener('click', event => {
+      if (rowTable && removeBtn.checked === true) {
         rowTable.forEach(tr => {
           const input = tr.closest('input');
           input.checked = true;
         });
-      }
-    } else {
-      if (rowTable) {
+      } else if (rowTable) {
         rowTable.forEach(tr => {
           const input = tr.closest('input');
           input.checked = false;
         });
       }
-    }
-  });
+    });
+  }
 }
 
 export default highlightBtn;

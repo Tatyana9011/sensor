@@ -4,6 +4,8 @@
 import { removeDataStorage } from './localStorage.js';
 import creatLoginPage from './creatLoginPage.js';
 import authorization from './authorization.js';
+import burgerMenu from './burgerMenu.js';
+
 
 const btnExit = () => {
   const navigationItemExit = document.querySelector('.exit');
@@ -21,6 +23,7 @@ const btnExit = () => {
 
     setTimeout(() => {
       sensor.remove();
+      document.removeEventListener('click', burgerMenu);
       wrapper.append(creatLoginPage());
       authorization();
     }, 100);

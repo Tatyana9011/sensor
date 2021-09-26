@@ -12,3 +12,14 @@ export function getDataStorage(name) {
 export function removeDataStorage(name) {
   localStorage.removeItem(name);
 }
+
+export function examinationDataStorage() {
+  const name = getDataStorage('name');
+  const URL = getDataStorage('URL');
+  const data = getDataStorage('data');
+  if (!name || !URL || !data) {
+    return false;
+  }
+  return true;
+}
+

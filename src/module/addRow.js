@@ -2,9 +2,9 @@
 'use strict';
 
 import inputValidate from './inputValidate.js';
-import sendForm from './api/sendForm.js';
+import sendForm from './api/sendFormUsers.js';
 import validateBlur from './validateBlur.js';
-import creatModalAddUsers from './modal/creatModalAddUsers.js';
+import creatModalAddUsers from './createPage/createComponent/modal/creatModalAddUsers.js';
 
 function addRow() {
   const modalDialog = document.querySelector('.modal-dialog');
@@ -17,13 +17,13 @@ function addRow() {
     modalDialog.append(content);
 
     const form = document.querySelector('.form-add-row');
+
     validateBlur(form);
 
     form.addEventListener('input', inputValidate);
 
     form.addEventListener('submit', event => {
       event.preventDefault();
-      console.log('event: ', event);
 
       const formData = new FormData(form);
       const body = {};

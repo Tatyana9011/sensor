@@ -11,15 +11,16 @@ function creatLoginPage() {
       </div>
       <form name='authorization' class='mt-5 w-100'>
         <div class="form-floating mb-3 ">
-          <input name="Login" type="text" class="form-control" id="floatingInput" placeholder="Login">
+          <input name="Login" type="text" class="form-control required" id="floatingInput" placeholder="Login">
           <label for="floatingInput">Login</label>
         </div>
         <div class="form-floating mb-3">
-          <input name="Password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+          <input name="Password" type="password" class="form-control required"
+          id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
         <div class="form-floating mb-3">
-          <input name="URL" type="text" class="form-control" id="floatingInputName" placeholder="Server URL">
+          <input name="URL" type="text" class="form-control required" id="floatingInputName" placeholder="Server URL">
           <label for="floatingInputName">Server URL</label>
         </div>
         <button type="submit" id="login" class="btn btn-secondary mt-3 mb-3" disabled='true'>Log in</button>

@@ -2,9 +2,11 @@
 'use strict';
 import creatSensorPage from "../creatSensorPage.js";
 import { saveDataJSON } from "../localStorage.js";
-import { init } from "../../script.js";
+import routerNavigation from '../routerNavigation.js';
 
 const resultEnd = data => {
+  console.log('resultEnd: ');
+
   const login = document.querySelector('.login');
   const wrapper = document.querySelector('.wrapper');
   const modalBackdrop = document.querySelector('.modal-backdrop');
@@ -21,9 +23,7 @@ const resultEnd = data => {
 
   wrapper.innerHTML = '';
   wrapper.append(creatSensorPage());
-
-  init();
-
+  routerNavigation();
 };
 
 export default resultEnd;

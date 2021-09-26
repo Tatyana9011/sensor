@@ -1,9 +1,10 @@
 /* eslint-disable strict */
 'use strict';
-import { getDataStorage } from './localStorage.js';
+
 import creatButtonPages from './creatButtonPages.js';
 
-function paginator(currentPage = 1, totalItemsCount = 0, pageSize = 10, portionSize = 5) {
+function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, portionSize = 5) {
+  console.log('paginator: ');
   //pageSize сколько елементов на странице
   //totalItemsCount - сколько всего елементов на сервере
   //currentPage - текущая страница - при загрузке всегда первая
@@ -12,7 +13,6 @@ function paginator(currentPage = 1, totalItemsCount = 0, pageSize = 10, portionS
   const dataTablesPaginate = document.querySelector('.dataTables_paginate');
   const next = dataTablesPaginate.querySelector('.next');
   const previous = dataTablesPaginate.querySelector('.previous');
-  const data = getDataStorage('data');
 
   totalItemsCount = data.length;
   console.log('totalItemsCount: ', totalItemsCount);
@@ -28,11 +28,15 @@ function paginator(currentPage = 1, totalItemsCount = 0, pageSize = 10, portionS
   const portionCount = Math.ceil(pageCount / portionSize);
   //нажимаем на кнопку назад (в кнопки прибавляют в сторону уменьшения )
   if (portionNumber <= 1) {
-    previous.setAttribute('disabled', 'true');
+    previous.classList.add('visually-hidden');
   }
   if (portionNumber >= portionCount) {
-    next.setAttribute('disabled', 'true');
+    next.classList.add('visually-hidden');
   }
+  /* if (portionNumber === 1 && pages.length > portionSize) {
+    next.classList.remove('visually-hidden');
+    // next.removeAttribute('disabled');
+  } */
 
   dataTablesPaginate.addEventListener('click', event => {
     event.preventDefault();
@@ -45,17 +49,17 @@ function paginator(currentPage = 1, totalItemsCount = 0, pageSize = 10, portionS
     paginateButton.innerHTML = '';
     if (target.matches('.next')) {
       portionNumber++;
-      previous.removeAttribute('disabled');
+      previous.classList.remove('visually-hidden');
     }
     if (target.matches('.previous')) {
       portionNumber--;
-      next.removeAttribute('disabled');
+      next.classList.remove('visually-hidden');
     }
     if (portionNumber <= 1) {
-      previous.setAttribute('disabled', 'true');
+      previous.classList.add('visually-hidden');
     }
     if (portionNumber >= portionCount) {
-      next.setAttribute('disabled', 'true');
+      next.classList.add('visually-hidden');
     }
 
     pages = creatButtonPages(portionNumber, currentPage, portionSize, pageCount);

@@ -49,3 +49,32 @@ ${URL}fsh/rest/Admin/users?userId=${id}&unbindOnly=false&checkGatewayLinks=true`
   }
 });
 
+export const loadPhotoMultipart = (URL, token, data) => fetch(`
+${URL}fsh/rest/User/loadPhotoMultipart?type=AVATAR`, {
+  method: 'PUT',
+  headers: {
+    "Accept": "*/*",
+    'FSH-AUTH-TOKEN': token
+  },
+  body: JSON.stringify(data)
+});
+
+export const rawPhotoContent = (URL, token, type, id) => fetch(`
+${URL}fsh//rest/Admin/rawPhotoContent?type=${type}&userId=${id}`, {
+  method: 'POST',
+  headers: {
+    "Accept": "*/*",
+    'Content-Type': 'application/octet-stream',
+    'FSH-AUTH-TOKEN': token
+  }
+});
+
+export const timezonesPost = URL => fetch(`${URL}fsh/rest/System/timezones`, {
+  method: 'POST',
+  headers: {
+    "Accept": "*/*",
+    'Content-Type': 'application/octet-stream',
+  }
+});
+
+

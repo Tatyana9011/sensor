@@ -33,11 +33,6 @@ img {
   height: auto;
 }
 
-a {
-  text-decoration: none !important;
-  color: inherit;
-}
-
 ul,
 ol {
   list-style: none;
@@ -67,8 +62,25 @@ figcaption {
   width: 1px !important;
   overflow: hidden;
 }
+
 .navigation-item {
-  color: #fff;
+  color: rgb(241, 231, 231);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.navigation-item.active {
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: underline;
+}
+#title-page {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 2px black;
+  color: rgb(241, 231, 231);
 }
 .img-exit {
   margin-left: 5px;
@@ -84,13 +96,76 @@ figcaption {
   max-height: 700px;
 }
 
+.mob-menu-btn {
+  display: none;
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  background-color: #f8d870;
+  border-radius: 50%;
+  border: 1px solid #665008;
+  box-shadow: 10px 5px 5px #665008;
+  top: 15%;
+  right: 5%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.mob-menu-btn:hover {
+  transform: scale(1.1);
+}
+
+.mob-menu-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3px;
+  margin-bottom: 4px;
+  width: 30px;
+  background: #22282e;
+}
+
+.burger-menu {
+  display: flex !important;
+  width: auto !important;
+  background: linear-gradient(to right, #3a7fd5, #6ebce2);
+  opacity: 0.9;
+  position: fixed;
+  height: 100%;
+  z-index: 1000;
+  padding-top: 20px;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.burger-menu.close {
+  left: -50%;
+}
+
+.burger-menu.open {
+  left: 0;
+}
+
 table {
   width: 100%;
   height: 700px !important;
   display: block !important;
   margin-bottom: 0 !important;
 }
-
+.col1 {
+  width: 20px;
+}
+th.col1 {
+  width: 34px;
+}
+.col2 {
+  width: 200px;
+}
+.col3 {
+  width: 300px;
+}
 tbody {
   max-height: 600px;
   display: inline-block;
@@ -230,6 +305,15 @@ button {
   height: 100px;
 }
 
+.file__preview {
+  max-width: 100px;
+  padding: 10px 0px 0px 0px;
+}
+
+.file__preview img {
+  max-width: 100%;
+}
+
 .block {
   position: relative;
   box-sizing: border-box;
@@ -280,5 +364,14 @@ button {
 @media (max-width: 990px) {
   .input-button-group {
     padding-right: 0 !important;
+  }
+  .left-menu {
+    display: none;
+  }
+  .mob-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

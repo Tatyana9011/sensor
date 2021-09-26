@@ -1,49 +1,42 @@
 /* eslint-disable strict */
 'use strict';
-import sendForm from './api/sendForm.js';
-import creatModalDeleteUsers from './modal/creatModalDeleteUsers.js';
+import sendForm from './api/sendFormUsers.js';
+import creatModalDeleteUsers from './createPage/createComponent/modal/creatModalDeleteUsers.js';
 
 
 function deleteSensor() {
-  const deleteBtn = document.getElementById('delete-button');
+  const deleteBtnTable = document.getElementById('delete-button');
 
-  deleteBtn.addEventListener('click', event => {
+  deleteBtnTable.addEventListener('click', event => {
     event.preventDefault();
 
     const checkedTr = document.querySelectorAll('.row-table');
-    const createdModal = creatModalDeleteUsers();
+    const arrUser = [];
+
+    checkedTr.forEach(item => {
+      if (item.checked) {
+        return arrUser.push(item);
+      }
+    });
+
+    const createdModal = creatModalDeleteUsers(arrUser.length);
     const modalDialog = document.querySelector('.modal-dialog');
     modalDialog.innerHTML = '';
     modalDialog.append(createdModal);
-
 
     const form = document.querySelector('.delete');
 
     form.addEventListener('submit', event => {
       event.preventDefault();
-      console.log('event: ', event);
 
-      const formData = new FormData(form);
-      const body = {};
-
-      formData.forEach((val, key) => {
-        body[key] = val;
-      });
-      body.adminRole = "CSR";
-
-      sendForm(form, body);
-    });
-
-
-
-    checkedTr.forEach(item => {
-      if (item.checked) {
+      arrUser.forEach(item => {
         const row = item.closest('tr');
         const td = row.querySelectorAll('td');
-        sendForm(null, td[0].dataset.id);
-      }
+        sendForm(form, td[0].dataset.id);
+      });
     });
   });
 }
 
 export default deleteSensor;
+
