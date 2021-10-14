@@ -11,7 +11,6 @@ import alignmentRow from './createPage/createComponent/createTable/alignmentRow.
 
 export const init = data => {
   console.log('init: ');
-  console.log('data: ', data);
   renderTable(data);
   alignmentRow();
   paginator(data);

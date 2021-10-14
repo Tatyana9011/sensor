@@ -8,7 +8,6 @@ function renderTable(newData) {
   table.innerHTML = '';
 
   const data = newData ? newData : getDataStorage('data');
-  console.log('data: ', data);
 
   if (data) {
     const ollTr = data.map((obj, index) => {

@@ -3,24 +3,19 @@
 import creatSensorPage from "../../createPage/creatSensorPage.js";
 import { saveDataJSON, getDataStorage } from "../../localStorage.js";
 import routerNavigation from '../../routerNavigation.js';
-import getPhoto from "./photoApi/getPhoto.js";
 import { photoIdentifier } from "../api.js";
 import responsePhoto from "./photoApi/responsePhoto.js";
 import { error } from "../error.js";
-import photo from "./photoApi/photo.js";
-import saveDataImg from "./photoApi/saveDataImg.js";
 
 
-export const arr = [];
-
-async function resultEnd(form, userId, token, data) {
+function resultEnd(form, userId, token, data) {
   console.log('resultEnd: ');
 
   const login = document.querySelector('.login');
   const wrapper = document.querySelector('.wrapper');
   const modalBackdrop = document.querySelector('.modal-backdrop');
   const newData = JSON.parse(data);
-  //saveDataJSON('data', getData);
+  saveDataJSON('data', newData);
 
   if (login) {
     login.remove();
@@ -52,8 +47,6 @@ async function resultEnd(form, userId, token, data) {
 
 
   routerNavigation(newData);
-
-
-};
+}
 
 export default resultEnd;

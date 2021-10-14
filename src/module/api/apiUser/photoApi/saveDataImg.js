@@ -2,11 +2,11 @@
 'use strict';
 import { saveDataJSON, getDataStorage } from "../../../localStorage.js";
 import routerNavigation from "../../../routerNavigation.js";
-import { arr } from './../resultEnd.js';
+
 
 const saveDataImg = () => {
+  console.log('saveDataImg: ');
 
-  console.log('arr: ', arr);
   /* console.log('saveDataImg: ');
   function getBase64(item) {
     const reader = new FileReader();

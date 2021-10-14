@@ -8,7 +8,7 @@ import { error } from '../error.js';
 import btnExit from '../../btnExit.js';
 import addStatus from '../../addStatus.js';
 import creatLoader from '../../createPage/createComponent/assets/creatLoader.js';
-import routerNavigation from '../../routerNavigation.js';
+
 
 const updateData = form => {
   console.log('updateData: ');

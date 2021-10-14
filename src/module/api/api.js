@@ -30,7 +30,6 @@ export const putUserData = (URL, data, token) => fetch(`${URL}fsh/rest/Admin/use
   body: JSON.stringify(data)
 });
 
-//http://192.168.99.244:9993/fsh/rest/Admin/users?userId=1&unbindOnly=false&checkGatewayLinks=true
 export const deleteUserData = (URL, token, id) => fetch(`
 ${URL}fsh/rest/Admin/users?userId=${id}&unbindOnly=false&checkGatewayLinks=true`, {
   method: 'DELETE',
@@ -67,8 +66,8 @@ ${URL}fsh/rest/Resource/photo/${photoIdentifier}?FSH-AUTH-TOKEN=${token}&userId=
     'Content-Type': 'application/octet-stream',
     'FSH-AUTH-TOKEN': token
   }
-});//a08ba2e22c1f1fb08fb4d89abd3f9d92
-//POST /rest/Resource/rawPhotoContent
+});
+
 export const rawPhotoContent = (URL, token, id) => fetch(`
 ${URL}fsh/rest/Resource/rawPhotoContent?type=AVATAR&userId=${id}`, {
   method: 'POST',
