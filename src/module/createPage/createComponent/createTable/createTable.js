@@ -24,14 +24,6 @@ function createTable(addClass) {
                         dropdown-toggle" type="button" data-bs-toggle="dropdown"
                           aria-expanded="false">Search:</button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Type</a></li>
-                          <li><a class="dropdown-item" href="#">Created</a></li>
-                          <li><a class="dropdown-item" href="#">Updated</a></li>
-                          <li><a class="dropdown-item" href="#">Photo</a></li>
-                          <li>
-                            <hr class="dropdown-divider">
-                          </li>
-                          <li><a class="dropdown-item" href="#">Separated link</a></li>
                         </ul>
                         <input type="text" class="form-control" aria-label="Text input with dropdown button">
                       </div>

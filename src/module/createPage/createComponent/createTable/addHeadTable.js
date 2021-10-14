@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-function addHeadTable(title) {
+function addHeadTable(title, arr, emphasize) {
   console.log('addHeadTable: ');
 
   const th = [];
@@ -10,8 +10,10 @@ function addHeadTable(title) {
   creatTr.classList.add('thead-th');
   creatTr.innerHTML = ``;
 
-  title.forEach(item => {
-
+  title.forEach((item, index) => {
+    if (emphasize[index] && arr[index]) {
+      return th.push(`<th class="emphasize"data-name="${arr[index]}">${item}</th>`);
+    }
     th.push(`<th>${item}</th>`);
 
   });

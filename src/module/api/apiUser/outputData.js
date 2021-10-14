@@ -1,6 +1,6 @@
 /* eslint-disable strict */
 'use strict';
-import { saveDataJSON } from "../localStorage.js";
+import { saveDataJSON } from "../../localStorage.js";
 import updateData from './updateData.js';
 
 const outputData = (form, body, data) => {

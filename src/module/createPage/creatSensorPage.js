@@ -40,8 +40,11 @@ function creatSensorPage() {
               <div class="massager mb-2"></div>
             </form>
             <div class="position-absolute w-25 top-2 end-0">
+              <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navigation-item">
+                <img alt='UserPhoto' class='img-avatar avatar'  src='./img/avatar.jpg' />
+              </a>
               <a type="button" class="navigation-item exit">
-              <img class='img-exit' alt="exit" src="./img/logout.png"> Exit
+                <img class='img-exit' alt="exit" src="./img/logout.png"> Exit
               </a>
             </div>
           </div>

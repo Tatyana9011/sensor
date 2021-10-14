@@ -6,7 +6,7 @@ function creatButtonPages(portionNumber, currentPage, portionSize, pageCount) {
 
   const creatButton = i => {
     const button = document.createElement('button');
-    const arrClassList = ['paginate_button'];
+    const arrClassList = ['page'];
     if (i === currentPage) {
       arrClassList.push('action');
     }

@@ -18,17 +18,8 @@ ${URL}fsh/rest/Auth/loginSync?username=${data.Login}&password=${data.Password}`,
     'Accept': 'application/json'
   },
   body: JSON.stringify(data)
-
-  // body: 'username=' + encodeURIComponent(data.Login) +
-  //   '&password=' + encodeURIComponent('qwerty')
-
-  /* headers: {
-    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-  },
-  body: 'username=bar&lorem=ipsum' */
-
-  // body: JSON.stringify(data)
 });
+
 export const putUserData = (URL, data, token) => fetch(`${URL}fsh/rest/Admin/user`, {
   method: 'PUT',
   headers: {
@@ -49,18 +40,37 @@ ${URL}fsh/rest/Admin/users?userId=${id}&unbindOnly=false&checkGatewayLinks=true`
   }
 });
 
-export const loadPhotoMultipart = (URL, token, data) => fetch(`
-${URL}fsh/rest/User/loadPhotoMultipart?type=AVATAR`, {
+export const serverDeletePhoto = (URL, token, id) => fetch(`
+${URL}fsh/rest/Admin/users?userId=${id}&type=AVATAR`, {
+  method: 'DELETE',
+  headers: {
+    "Accept": "*/*",
+    'FSH-AUTH-TOKEN': token
+  }
+});
+
+export const loadPhotoMultipart = (URL, token, data, id) => fetch(`
+${URL}fsh/rest/Resource/loadPhotoMultipart?type=AVATAR&userId=${id}`, {
   method: 'PUT',
   headers: {
     "Accept": "*/*",
     'FSH-AUTH-TOKEN': token
   },
-  body: JSON.stringify(data)
+  body: data
 });
 
-export const rawPhotoContent = (URL, token, type, id) => fetch(`
-${URL}fsh//rest/Admin/rawPhotoContent?type=${type}&userId=${id}`, {
+export const photoIdentifier = (URL, token, id, photoIdentifier) => fetch(`
+${URL}fsh/rest/Resource/photo/${photoIdentifier}?FSH-AUTH-TOKEN=${token}&userId=${id}`, {
+  method: 'POST',
+  headers: {
+    "Accept": "*/*",
+    'Content-Type': 'application/octet-stream',
+    'FSH-AUTH-TOKEN': token
+  }
+});//a08ba2e22c1f1fb08fb4d89abd3f9d92
+//POST /rest/Resource/rawPhotoContent
+export const rawPhotoContent = (URL, token, id) => fetch(`
+${URL}fsh/rest/Resource/rawPhotoContent?type=AVATAR&userId=${id}`, {
   method: 'POST',
   headers: {
     "Accept": "*/*",

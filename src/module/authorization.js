@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-import sendForm from './api/sendFormUsers.js';
+import sendForm from './api/apiUser/sendFormUsers.js';
 import validateBlur from './validateBlur.js';
 import inputValidate from './inputValidate.js';
 

@@ -1,10 +1,10 @@
 /* eslint-disable strict */
 'use strict';
 
-import inputValidate from './inputValidate.js';
-import sendForm from './api/sendFormUsers.js';
-import validateBlur from './validateBlur.js';
-import creatModalAddUsers from './createPage/createComponent/modal/creatModalAddUsers.js';
+import inputValidate from '../../../inputValidate.js';
+import sendForm from '../../../api/apiUser/sendFormUsers.js';
+import validateBlur from '../../../validateBlur.js';
+import creatModalAddUsers from '../modal/creatModalAddUsers.js';
 
 function addRow() {
   const modalDialog = document.querySelector('.modal-dialog');
@@ -12,7 +12,9 @@ function addRow() {
 
   btnAddRow.addEventListener('click', event => {
     event.preventDefault();
+
     const content = creatModalAddUsers();
+
     modalDialog.innerHTML = '';
     modalDialog.append(content);
 

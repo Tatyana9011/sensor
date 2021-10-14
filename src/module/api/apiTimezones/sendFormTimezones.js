@@ -1,12 +1,11 @@
 /* eslint-disable strict */
 'use strict';
-import creatLoader from '../creatLoader.js';
-import addStatus from '../addStatus.js';
-import { timezonesPost } from './api.js';
-import { getDataStorage } from '../localStorage.js';
-import { error } from './error.js';
-import timezonesPage from '../createPage/timezonesPage.js';
-
+import creatLoader from '../../createPage/createComponent/assets/creatLoader.js';
+import addStatus from '../../addStatus.js';
+import { timezonesPost } from '../api.js';
+import { getDataStorage } from '../../localStorage.js';
+import { error } from '../error.js';
+import timezonesPage from '../../createPage/timezonesPage.js';
 
 const sendFormTimezones = () => {
 

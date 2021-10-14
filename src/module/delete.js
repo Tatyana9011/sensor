@@ -1,6 +1,6 @@
 /* eslint-disable strict */
 'use strict';
-import sendForm from './api/sendFormUsers.js';
+import sendForm from './api/apiUser/sendFormUsers.js';
 import creatModalDeleteUsers from './createPage/createComponent/modal/creatModalDeleteUsers.js';
 
 

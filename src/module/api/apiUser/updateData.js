@@ -1,13 +1,14 @@
 /* eslint-disable strict */
 'use strict';
 
-import { postData } from './api.js';
+import { postData } from '../api.js';
 import resultEnd from './resultEnd.js';
-import { getDataStorage } from '../localStorage.js';
-import { error } from './error.js';
-import btnExit from '../btnExit.js';
-import addStatus from '../addStatus.js';
-import creatLoader from '../creatLoader.js';
+import { getDataStorage } from '../../localStorage.js';
+import { error } from '../error.js';
+import btnExit from '../../btnExit.js';
+import addStatus from '../../addStatus.js';
+import creatLoader from '../../createPage/createComponent/assets/creatLoader.js';
+import routerNavigation from '../../routerNavigation.js';
 
 const updateData = form => {
   console.log('updateData: ');
@@ -24,9 +25,9 @@ const updateData = form => {
       }
       return (response.text());
     })
-    .then(resultEnd)
-    .then(btnExit)
-    .catch(error.bind(this, form));
+    .then(resultEnd.bind(this, form, getData.userId, getData.tokenValue))
+    .catch(error.bind(this, form))
+    .finally(btnExit);
 };
 
 export default updateData;

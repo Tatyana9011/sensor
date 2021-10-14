@@ -3,7 +3,7 @@
 
 import creatButtonPages from './creatButtonPages.js';
 
-function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, portionSize = 5) {
+function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, portionSize = 2) {
   console.log('paginator: ');
   //pageSize сколько елементов на странице
   //totalItemsCount - сколько всего елементов на сервере
@@ -13,6 +13,7 @@ function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, po
   const dataTablesPaginate = document.querySelector('.dataTables_paginate');
   const next = dataTablesPaginate.querySelector('.next');
   const previous = dataTablesPaginate.querySelector('.previous');
+  let pages = '';
 
   totalItemsCount = data.length;
   console.log('totalItemsCount: ', totalItemsCount);
@@ -22,7 +23,9 @@ function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, po
   //сколько всего страниц
   const pageCount = Math.ceil(totalItemsCount / pageSize);
 
-  let pages = creatButtonPages(portionNumber, currentPage, portionSize, pageCount);
+  if (!document.querySelector('.page')) {
+    pages = creatButtonPages(portionNumber, currentPage, portionSize, pageCount);
+  }
   //количество страниц всего на сервере делим на порцию страниц которую необходимо прислать
   //(алучаем количество порция на сервере)
   const portionCount = Math.ceil(pageCount / portionSize);

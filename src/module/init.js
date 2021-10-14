@@ -1,25 +1,24 @@
 /* eslint-disable strict */
 'use strict';
 
-import highlightBtn from './btnHighlightAll.js';
+import highlightBtn from './createPage/createComponent/createTable/btnHighlightAll.js';
 import deleteSensor from './delete.js';
-import addRow from './addRow.js';
-import { getDataStorage } from './localStorage.js';
-import paginator from './paginator.js';
+import addRow from './createPage/createComponent/userComponent/addRow.js';
+import paginator from './createPage/createComponent/assets/paginator.js';
 import checkResponse from './checkResponse.js';
 import renderTable from './createPage/createComponent/createTable/renderTableUsers.js';
 import alignmentRow from './createPage/createComponent/createTable/alignmentRow.js';
 
-export const init = () => {
-  renderTable();
+export const init = data => {
+  console.log('init: ');
+  console.log('data: ', data);
+  renderTable(data);
   alignmentRow();
-  paginator(getDataStorage('data'));
+  paginator(data);
   highlightBtn();
   addRow();
   checkResponse();
   deleteSensor();
-
-  window.addEventListener('resize', checkResponse);
 
   const deleteBtn = document.getElementById('delete-button');
 

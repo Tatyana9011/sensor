@@ -30,8 +30,12 @@ const addStatus = (form, status, time, color = 'red') => {
   loaderHtml = document.querySelector('.preloader');
 
   setTimeout(() => {
-    loaderHtml.remove();
-    document.head.querySelector('style').remove();
+
+    if (loaderHtml) {
+      loaderHtml.remove();
+      document.head.querySelector('style').remove();
+    }
+
   }, time);
 
 };

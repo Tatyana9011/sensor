@@ -17,6 +17,7 @@ export function examinationDataStorage() {
   const name = getDataStorage('name');
   const URL = getDataStorage('URL');
   const data = getDataStorage('data');
+
   if (!name || !URL || !data) {
     return false;
   }
