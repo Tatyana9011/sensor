@@ -35,11 +35,9 @@ async function resultEnd(form, userId, token, data) {
 
   const URL = getDataStorage('URL');
 
-  function getData(obj) {
+  newData.forEach(obj => {
     if (obj.avatarUrl) {
       const identifier = obj.avatarUrl.replace(/rest%2FResource%2Fphoto%2F/, '');
-      console.log('obj.avatarUrl: ', obj.avatarUrl);
-      console.log('identifier: ', identifier);
       photoIdentifier(URL, token, obj.id, identifier)
         .then(response => {
           if (response.status !== 200) {
@@ -50,13 +48,8 @@ async function resultEnd(form, userId, token, data) {
         .then(responsePhoto.bind(this, obj.id))
         .catch(error.bind(this, form));
     }
-  };
+  });
 
-  const promises = [];
-
-  for (let i = 0; i < newData.length; i++) {
-    promises.push(getData(newData[i]));
-  }
 
   routerNavigation(newData);
 
