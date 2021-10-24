@@ -31,10 +31,11 @@ function creatSensorPage() {
             </li>
           </ul>
         </div>
-        <div class="col-md position-relative">
+        <div class="col-md position-relative content-sensor">
           <div class="row align-items-center ">
             <div class="col-sm-8">
               <h2 id='title-page'>Users</h2>
+              <span id="status"></span>
             </div>
             <form id='updateUsers' name='updateUsers'>
               <div class="massager mb-2"></div>

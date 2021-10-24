@@ -86,10 +86,6 @@ const inputGroupSearch = (title, data) => {
 
   }
 
-
-
-
-
-}
+};
 
 export default inputGroupSearch;

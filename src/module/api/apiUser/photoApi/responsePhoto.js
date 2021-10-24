@@ -2,27 +2,46 @@
 'use strict';
 
 import { getDataStorage } from "../../../localStorage.js";
-import saveDataImg from './saveDataImg.js';
+import deletePhoto from "./deletePhoto.js";
+import formPreview from "../../../createPage/createComponent/userComponent/formPreview.js";
 
 const responsePhoto = (id, dataImg) => {
   console.log('responsePhoto: ');
-  const imageAvatar = document.querySelector('.avatar');
-  const reader = new FileReader();
-  const userId = getDataStorage('name').userId;
+  if (dataImg) {
+    const imageAvatar = document.querySelector('.avatar');
+    const reader = new FileReader();
+    const userId = getDataStorage('name').userId;
 
-  reader.addEventListener('load', e => {
+    reader.addEventListener('load', e => {
 
-    if (Number(id) === Number(userId)) {
-      imageAvatar.src = e.target.result;
-    }
+      if (e.target.result) {
+        if (Number(id) === Number(userId)) {
+          imageAvatar.src = e.target.result;
+        }
 
-    const td = document.querySelector(`td[data-id="${id}"]`);
-    const row = td.closest('tr');
-    const img = row.querySelector('img');
-    img.src = e.target.result;
-  });
+        const formPreviewDiv = document.getElementById('formPreview');
+        if (formPreviewDiv) {
+          formPreview(id, e);
 
-  reader.readAsDataURL(dataImg);
+          const deletePhotoBtn = document.querySelector('.delete-photo');
+
+          deletePhotoBtn.addEventListener('click', event => {
+            event.preventDefault();
+            deletePhoto(id, formPreviewDiv);
+          });
+        }
+
+      } else {
+        console.log('----e.target.result фото пришо но не загрузилось');
+      }
+
+    });
+
+    reader.readAsDataURL(dataImg);
+  } else {
+    console.log('----e.target.result фото не пришло с сервера');
+  }
+
 
 };
 

@@ -21,10 +21,16 @@ const addStatus = (form, status, time, color = 'red') => {
   document.head.append(style);
   if (!div) {
     const login = document.querySelector('.login');
-    const elem = login.querySelector('.massager');
-    elem.innerHTML = stratus;
+
+    if (login) {
+      const elem = login.querySelector('.massager');
+      elem.innerHTML = stratus;
+    }
+
   } else {
+
     div.innerHTML = stratus;
+
   }
 
   loaderHtml = document.querySelector('.preloader');

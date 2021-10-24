@@ -2,11 +2,14 @@
 'use strict';
 import { saveDataJSON } from "../../localStorage.js";
 import updateData from './updateData.js';
+import websocket from "../../websocket/websoket.js";
 
 const outputData = (form, body, data) => {
 
   saveDataJSON('name', JSON.parse(data));
   saveDataJSON('URL', body.URL);
+
+  websocket();
 
   form.reset();
 

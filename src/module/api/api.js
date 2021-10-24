@@ -38,16 +38,16 @@ ${URL}fsh/rest/Admin/users?userId=${id}&unbindOnly=false&checkGatewayLinks=true`
     'FSH-AUTH-TOKEN': token
   }
 });
-
+//DELETE /rest/Resource/deletePhotoDELETE /rest/Resource/deletePhoto
 export const serverDeletePhoto = (URL, token, id) => fetch(`
-${URL}fsh/rest/Admin/users?userId=${id}&type=AVATAR`, {
+${URL}fsh/rest/Resource/deletePhoto?userId=${id}&type=AVATAR`, {
   method: 'DELETE',
   headers: {
     "Accept": "*/*",
     'FSH-AUTH-TOKEN': token
   }
 });
-
+//
 export const loadPhotoMultipart = (URL, token, data, id) => fetch(`
 ${URL}fsh/rest/Resource/loadPhotoMultipart?type=AVATAR&userId=${id}`, {
   method: 'PUT',
@@ -57,7 +57,7 @@ ${URL}fsh/rest/Resource/loadPhotoMultipart?type=AVATAR&userId=${id}`, {
   },
   body: data
 });
-
+//59be618560f2150c263f1eaac03fb5e5
 export const photoIdentifier = (URL, token, id, photoIdentifier) => fetch(`
 ${URL}fsh/rest/Resource/photo/${photoIdentifier}?FSH-AUTH-TOKEN=${token}&userId=${id}`, {
   method: 'POST',

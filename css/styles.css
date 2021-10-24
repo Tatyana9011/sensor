@@ -96,8 +96,9 @@ figcaption {
 .file {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
 }
 
@@ -105,31 +106,59 @@ figcaption {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  max-width: 75%;
   height: 100%;
   opacity: 0;
   font-size: 0;
   cursor: pointer;
-}
-.file__button {
-  display: flex;
-  min-height: 40px;
-  width: 100%;
-  border-radius: 4px;
-  justify-content: center;
-  align-items: center;
-  background-color: #b4f0f0;
-  padding: 0px 20px;
-}
-.file__preview {
-  display: inline;
-  max-width: 150px;
-  padding: 10px 0px 0px 0px;
-}
-.file__preview img {
-  max-width: 150px;
+  z-index: 100;
 }
 
+.file__button {
+  width: 50%;
+  color: rgb(66, 54, 14) !important;
+  background-color: #ffdb4d !important;
+  padding: 10px !important;
+  border: none !important;
+  border-radius: 50px !important;
+  box-shadow: 3px 3px 3px #6b4559 !important;
+  outline: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  transition: all 0.3s ease-in-out;
+}
+.file__button:hover {
+  background-color: #d4b741 !important;
+  color: rgb(88, 72, 19) !important;
+}
+.file__preview {
+  max-width: 50px;
+  border-radius: 8px;
+  background: #e0e0e0;
+  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+  transition: transform 0.3s ease-in-out;
+}
+
+.file__preview img {
+  max-width: 50px;
+  transition: transform 0.3s ease-in-out;
+  z-index: 50 !important;
+}
+
+.file__preview img:hover {
+  z-index: 100 !important;
+  transform: scale(5);
+  border-radius: 8px;
+  background: #e0e0e0;
+  box-shadow: 7px 7px 18px #cccccc, -7px -7px 18px #f4f4f4;
+}
+
+.delete-photo {
+  position: absolute;
+  right: -15;
+}
 #product-table {
   background-color: #fff;
   box-shadow: 3px 3px 20px rgb(0 0 0 / 30%);
@@ -430,6 +459,9 @@ button {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+}
+.unnamed {
+  opacity: 0.5;
 }
 @keyframes wave {
   0% {

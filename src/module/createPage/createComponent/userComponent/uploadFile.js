@@ -3,15 +3,15 @@
 
 import submitPhoto from "./submitPhoto.js";
 import deletePhoto from "../../../api/apiUser/photoApi/deletePhoto.js";
+import formPreview from "./formPreview.js";
 
 function uploadFile(file, content, id, token, target) {
   console.log('uploadFile: ');
 
   const formImage = document.getElementById('formImage');
   const form = document.querySelector('.form-add-photo');
-  const formPreview = document.getElementById('formPreview');
+  const formPreviewDiv = document.getElementById('formPreview');
   const saveChanges = document.getElementById('saveChanges');
-  saveChanges.setAttribute('disabled', 'true');
 
   if (!['image/jpeg', 'image/png', 'image/gif'].includes(file.type)) {
     content.log('Разрешено только изображение');
@@ -26,15 +26,19 @@ function uploadFile(file, content, id, token, target) {
 
   const reader = new FileReader();
   reader.onload = e => {
-    formPreview.innerHTML = `
-    <img src="${e.target.result}" alt="Photo">
-    <button type="button" class="btn-close position-absolute top-2 end-0 delete-photo" aria-label="Close"></button>
-    `;
+    formPreview(id, e);
+
     saveChanges.classList.remove('btn-outline-primary');
     saveChanges.classList.add('btn-primary');
     saveChanges.removeAttribute('disabled');
+    const deletePhotoBtn = document.querySelector('.delete-photo');
+
     submitPhoto(form, id, token);
-    deletePhoto(id, token, target, formPreview);
+
+    deletePhotoBtn.addEventListener('click', event => {
+      event.preventDefault();
+      deletePhoto(id, formPreviewDiv);
+    });
   };
 
   reader.onerror = () => {

@@ -2,6 +2,9 @@
 'use strict';
 
 function creatModalAddUsers() {
+  const body = document.querySelector('body');
+  body.style.paddingRight = '0px';
+
   const div = document.createElement('div');
   div.classList.add('modal-content');
   div.innerHTML = `

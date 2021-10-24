@@ -1,6 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 import getPhoto from "../../../api/apiUser/photoApi/getPhoto.js";
+import updateData from "../../../api/apiUser/updateData.js";
 
 
 function submitPhoto(form, id, token) {

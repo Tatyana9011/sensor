@@ -5,6 +5,7 @@ import sendForm from './api/apiUser/sendFormUsers.js';
 import validateBlur from './validateBlur.js';
 import inputValidate from './inputValidate.js';
 
+
 function logIn() {
   const form = document.querySelector('form[name="authorization"]');
 
@@ -21,6 +22,7 @@ function logIn() {
     formData.forEach((val, key) => {
       body[key] = val;
     });
+    body.gcmIdentifier = '/topic/notifications/12345';
 
     sendForm(form, body);
   });

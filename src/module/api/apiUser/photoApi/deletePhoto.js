@@ -1,29 +1,31 @@
 /* eslint-disable strict */
 'use strict';
 import { serverDeletePhoto } from "../../api.js";
-import updateData from "../updateData.js";
 import { getDataStorage } from "../../../localStorage.js";
+import { error } from "../../error.js";
+import responseDeletePhoto from "./responseDeletePhoto.js";
 
-function deletePhoto(id, token, target, formPreview) {
+function deletePhoto(id, formPreview) {
+  console.log('deletePhoto: ');
 
-  console.log('id, token, target: ', id, token, target);
+  const form = document.querySelector('.form-add-photo');
 
-  const btnDeletePhoto = formPreview.querySelector('.delete-photo');
+  if (formPreview.querySelector('img')) {
+    const token = getDataStorage('name').tokenValue;
+    const URL = getDataStorage('URL');
+    serverDeletePhoto(URL, token, id)
+      .then(response => {
+        if (response.status !== 200) {
+          throw 'Unable connect to server URL address !!!';
+        }
+        return (response.blob());
+      })
+      .then(responseDeletePhoto)
+      .catch(error.bind(this, form, "Photo was not delete "));
 
-  btnDeletePhoto.addEventListener('click', event => {
-    event.preventDefault();
-
-    if (target.src.match(/data/)) {
-
-      const URL = getDataStorage('URL');
-      serverDeletePhoto(URL, token, id);
-
-      const form = document.getElementById('updateUsers');
-      updateData(form);
-    } else {
-      formPreview.innerHTML = '';
-    }
-  });
+  } else {
+    formPreview.innerHTML = '';
+  }
 
 
 }

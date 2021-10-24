@@ -4,7 +4,7 @@
 import { getDataStorage } from '../../../localStorage.js';
 import { error } from '../../error.js';
 import { loadPhotoMultipart, rawPhotoContent } from '../../api.js';
-import responsePhoto from './responsePhoto.js';
+import updateData from '../updateData.js';
 
 const getPhoto = (form, body, id, token) => {
   console.log('getPhoto: ');
@@ -25,7 +25,7 @@ const getPhoto = (form, body, id, token) => {
       }
       return (response.blob());
     })
-    .then(responsePhoto.bind(this, id))
+    .then(updateData.bind(this, form))
     .catch(error.bind(this, form));
 
 };
