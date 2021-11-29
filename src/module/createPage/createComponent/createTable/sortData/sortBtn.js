@@ -2,13 +2,14 @@
 'use strict';
 
 import sortData from "./sortData.js";
-import renderTableUsers from "../renderTableUsers.js";
 import renderTableTimezones from "../renderTableTimezones.js";
 import { init } from "../../../../init.js";
+import { getDataStorage } from "../../../../localStorage.js";
+import getewaysManageDevices from "../../getewaysComponent/getewaysManageDevices.js";
 
 function sortBtn(target, data) {
   console.log('sortBtn: ');
-
+  const location = getDataStorage('location');
   target.classList.add('btnFilter');
   target.classList.toggle('active');
 
@@ -16,16 +17,18 @@ function sortBtn(target, data) {
 
     const newData = sortData(target.dataset.name, data, 'active');
 
-    if (target.textContent === 'Login' ||
-      target.textContent === 'Created' || target.textContent === 'Updated') {
+    if (location === "Users") {
 
       init(newData);
 
 
-    } else if (target.textContent === 'Name' ||
-      target.textContent === 'Offset GMT' || target.textContent === 'Offset Ms') {
+    } else if (location === "Timezones") {
 
       renderTableTimezones(newData);
+
+    } else if (location === "Geteways") {
+
+      getewaysManageDevices(newData);
 
     }
 
@@ -33,15 +36,17 @@ function sortBtn(target, data) {
 
     const newData = sortData(target.dataset.name, data);
 
-    if (target.textContent === 'Login' ||
-      target.textContent === 'Created' || target.textContent === 'Updated') {
+    if (location === "Users") {
 
       init(newData);
 
-    } else if (target.textContent === 'Name' ||
-      target.textContent === 'Offset GMT' || target.textContent === 'Offset Ms') {
+    } else if (location === "Timezones") {
 
       renderTableTimezones(newData);
+
+    } else if (location === "Geteways") {
+
+      getewaysManageDevices(newData);
 
     }
 

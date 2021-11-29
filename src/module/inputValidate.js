@@ -4,6 +4,7 @@
 import addStatus from "./addStatus.js";
 
 function inputValidate(event) {
+  console.log('inputValidate: ');
   const target = event.target,
     login = document.getElementById('login'),
     form = target.closest('form'),

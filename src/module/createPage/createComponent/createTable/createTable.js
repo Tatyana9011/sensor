@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-function createTable(addClass) {
+function createTable(addClass, pages = true) {
   console.log('createTable ');
 
   const div = document.createElement('div');
@@ -33,14 +33,14 @@ function createTable(addClass) {
                 <tbody>
                 </tbody>
               </table>
-                <div class="dataTables_paginate paging_simple d-flex">
+              ${pages ? `<div class="dataTables_paginate paging_simple d-flex">
                 <button class="paginate_button previous disabled"
                  aria-controls="example" id="example_previous">Previous</button>
 
                  <div id="paginate_button"></div>
 
                 <button class="paginate_button next" aria-controls="example" id="example_next">Next</button>
-                </div>
+                </div>` : ''}
   `;
 
   return div;

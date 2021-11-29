@@ -2,24 +2,25 @@
 'use strict';
 import creatLoader from '../../createPage/createComponent/assets/creatLoader.js';
 import addStatus from '../../addStatus.js';
-import { timezonesPost } from '../api.js';
+import { manageDevices } from '../api.js';
 import { getDataStorage } from '../../localStorage.js';
 import { error } from '../error.js';
-import timezonesPage from '../../createPage/timezonesPage.js';
+import getewaysUsers from '../../createPage/createComponent/getewaysComponent/getewaysUsers.js';
 import errorProcessing from '../errorProcessing.js';
 
-const sendFormTimezones = () => {
+const sendFormGeteways = () => {
 
   const loader = creatLoader();
   const URL = getDataStorage('URL');
   const form = document.getElementById('updateUsers');
+  const getData = getDataStorage('name');
 
   addStatus(form, loader.outerHTML, 60000, 'green');
 
-  timezonesPost(URL)
+  manageDevices(URL, getData.tokenValue)
     .then(res => errorProcessing(res))
-    .then(timezonesPage)
+    .then(getewaysUsers)
     .catch(error.bind(this, form));
 };
 
-export default sendFormTimezones;
+export default sendFormGeteways;

@@ -9,9 +9,13 @@ export const postData = (URL, token) => fetch(`${URL}fsh/rest/Admin/adminUsers`,
     'FSH-AUTH-TOKEN': token
   }
 });
+//`https://testfsh.friendly-tech.com:10356/fsh/rest/System/generateRandom`
+export const generateRandom = () => fetch(`https://testfsh.friendly-tech.com:10356/fsh/rest/System/generateRandom`, {
+  method: 'POST'
+});
 
-export const authData = (URL, data) => fetch(`
-${URL}fsh/rest/Auth/loginSync?username=${data.Login}&password=${data.Password}`, {
+export const authData = (URL, data, topic) => fetch(`
+${URL}fsh/rest/Auth/loginSync?username=${data.Login}&password=${data.Password}&gcmIdentifier=ws://topic/notifications/${topic}`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -57,7 +61,7 @@ ${URL}fsh/rest/Resource/loadPhotoMultipart?type=AVATAR&userId=${id}`, {
   },
   body: data
 });
-//59be618560f2150c263f1eaac03fb5e5
+
 export const photoIdentifier = (URL, token, id, photoIdentifier) => fetch(`
 ${URL}fsh/rest/Resource/photo/${photoIdentifier}?FSH-AUTH-TOKEN=${token}&userId=${id}`, {
   method: 'POST',
@@ -83,6 +87,16 @@ export const timezonesPost = URL => fetch(`${URL}fsh/rest/System/timezones`, {
   headers: {
     "Accept": "*/*",
     'Content-Type': 'application/octet-stream',
+  }
+});
+
+//POST /rest/Manage/devices
+export const manageDevices = (URL, token) => fetch(`${URL}fsh/rest/Manage/devices`, {
+  method: 'POST',
+  headers: {
+    "Accept": "*/*",
+    'Content-Type': 'application/octet-stream',
+    'FSH-AUTH-TOKEN': token
   }
 });
 

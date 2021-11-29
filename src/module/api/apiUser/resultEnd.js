@@ -6,9 +6,10 @@ import routerNavigation from '../../routerNavigation.js';
 import { photoIdentifier } from "../api.js";
 import responsePhoto from "./photoApi/responsePhoto.js";
 import { error } from "../error.js";
-import websocket from "../../websocket/websoket.js";
+
 
 function resultEnd(form, userId, token, data) {
+  console.log('form, userId, token, data: ', form, userId, token, data);
   console.log('resultEnd: ');
 
   const login = document.querySelector('.login');
@@ -44,7 +45,6 @@ function resultEnd(form, userId, token, data) {
       })
       .then(responsePhoto.bind(this, userPhoto.id))
       .catch(error.bind(this, form, "Photo was not loaded "));
-
   }
 
 }

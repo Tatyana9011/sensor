@@ -8,7 +8,7 @@ import { error } from '../error.js';
 import btnExit from '../../btnExit.js';
 import addStatus from '../../addStatus.js';
 import creatLoader from '../../createPage/createComponent/assets/creatLoader.js';
-
+import errorProcessing from "../errorProcessing.js";
 
 const updateData = form => {
   console.log('updateData: ');
@@ -16,17 +16,13 @@ const updateData = form => {
   const getData = getDataStorage('name');
   const URL = getDataStorage('URL');
   const loader = creatLoader();
+  let message = '';
 
   addStatus(form, loader.outerHTML, 60000, 'green');
   postData(URL, getData.tokenValue)
-    .then(response => {
-      if (response.status !== 200) {
-        throw new Error('Unable connect to server URL address !!!');
-      }
-      return (response.text());
-    })
+    .then(res => message = errorProcessing(res))
     .then(resultEnd.bind(this, form, getData.userId, getData.tokenValue))
-    .catch(error.bind(this, form))
+    .catch(error.bind(this, form, message))
     .finally(btnExit);
 };
 

@@ -3,8 +3,12 @@
 
 function creatLoginPage() {
   const div = document.createElement('div');
+  const body = document.querySelector('body');
+  body.style.background = 'linear-gradient(to right, #3a7fd5, #6ebce2)';
+
   const arrClassList = ['container', 'w-25', 'login', 'd-flex', 'flex-column'];
   div.classList.add(...arrClassList);
+
   div.innerHTML = `
       <div class="w-100 position-relative ">
         <div class="massager  w-100 position-absolute"> </div>

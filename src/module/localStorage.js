@@ -1,6 +1,8 @@
 /* eslint-disable strict */
 'use strict';
 
+import exit from "./exit.js";
+
 export function saveDataJSON(name, data) {
   localStorage.setItem(name, JSON.stringify(data));
 }

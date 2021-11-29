@@ -4,29 +4,34 @@
 import sendForm from './api/apiUser/sendFormUsers.js';
 import validateBlur from './validateBlur.js';
 import inputValidate from './inputValidate.js';
+import { saveDataJSON } from './localStorage.js';
 
+function logIn(topic) {
+  console.log('topic: ', topic);
+  console.log('logIn: ');
 
-function logIn() {
   const form = document.querySelector('form[name="authorization"]');
 
-  validateBlur(form);
+  if (topic) {
+    saveDataJSON('random', topic);
 
-  form.addEventListener('input', inputValidate);
+    validateBlur(form);
 
-  form.addEventListener('submit', event => {
-    event.preventDefault();
+    form.addEventListener('input', inputValidate);
 
-    const formData = new FormData(form);
-    const body = {};
+    form.addEventListener('submit', event => {
+      event.preventDefault();
 
-    formData.forEach((val, key) => {
-      body[key] = val;
+      const formData = new FormData(form);
+      const body = {};
+
+      formData.forEach((val, key) => {
+        body[key] = val;
+      });
+
+      sendForm(form, body, topic);
     });
-    body.gcmIdentifier = '/topic/notifications/12345';
-
-    sendForm(form, body);
-  });
-
+  }
 }
 
 export default logIn;

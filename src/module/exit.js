@@ -3,9 +3,9 @@
 
 import { removeDataStorage } from './localStorage.js';
 import creatLoginPage from './createPage/creatLoginPage.js';
-import authorization from './authorization.js';
+import random from './api/apiUser/random.js';
 import burgerMenu from './burgerMenu.js';
-
+import { addListener } from './eventListener.js';
 
 const exit = () => {
 
@@ -17,15 +17,21 @@ const exit = () => {
     removeDataStorage('URL');
     removeDataStorage('data');
     removeDataStorage('timezones');
-    removeDataStorage('newData');
+    //removeDataStorage('newData');
     removeDataStorage('location');
+    removeDataStorage('random');
   }, 0);
 
   setTimeout(() => {
-    sensor.remove();
+    if (sensor) {
+      sensor.remove();
+    }
+    document.removeEventListener('click', addListener);
     document.removeEventListener('click', burgerMenu);
+
+    wrapper.innerHTML = ``;
     wrapper.append(creatLoginPage());
-    authorization();
+    random();
   }, 100);
 
 };

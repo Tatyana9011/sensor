@@ -7,28 +7,25 @@ import creatLoader from '../../createPage/createComponent/assets/creatLoader.js'
 import { getDataStorage } from '../../localStorage.js';
 import { error } from '../error.js';
 import outputData from './outputData.js';
-import updateData from './updateData.js';
+import responseError from '../responseError.js';
+import errorProcessing from '../errorProcessing.js';
 
-const sendForm = (form, body) => {
+const sendForm = (form, body, topic) => {
   const loader = creatLoader();
-
+  let message = '';
   if (form) {
 
     addStatus(form, loader.outerHTML, 60000, 'green');
 
     if (form.getAttribute('name') === 'authorization') {
-      authData(body.URL, body)
-        .then(response => {
-          if (response.status !== 200) {
-            throw 'Unable connect to server URL address !!!';
-          }
-          return (response.text());
-        })
-        .then(outputData.bind(this, form, body))
-        .catch(error.bind(this, form));
+      authData(body.URL, body, topic)
+        .then(res => message = errorProcessing(res))
+        .then(outputData.bind(this, form, body, topic))
+        .catch(error.bind(this, form, message));
     }
 
     if (form.getAttribute('name') === 'row') {
+      console.log('form: ', form);
 
       addStatus(form, loader.outerHTML, 60000, 'green');
 
@@ -36,14 +33,9 @@ const sendForm = (form, body) => {
       const getData = getDataStorage('name');
 
       putUserData(URL, body, getData.tokenValue)
-        .then(response => {
-          if (response.status !== 200) {
-            throw 'Unable connect to server URL address !!!';
-          }
-          return (response.text());
-        })
-        .then(updateData.bind(this, form))
-        .catch(error.bind(this, form));
+        .then(res => message = errorProcessing(res))
+        .then(responseError.bind(this, form))
+        .catch(error.bind(this, form, message));
     }
     if (form.getAttribute('name') === 'delete') {
 
@@ -53,14 +45,9 @@ const sendForm = (form, body) => {
       const getData = getDataStorage('name');
 
       deleteUserData(URL, getData.tokenValue, body)
-        .then(response => {
-          if (response.status !== 200) {
-            throw 'Unable connect to server URL address !!!';
-          }
-          return (response.text());
-        })
-        .then(updateData.bind(this, form))
-        .catch(error.bind(this, form));
+        .then(res => message = errorProcessing(res))
+        .then(responseError.bind(this, form))
+        .catch(error.bind(this, form, message));
     }
   }
 };

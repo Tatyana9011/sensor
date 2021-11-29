@@ -2,7 +2,6 @@
 'use strict';
 
 import { init } from "./init.js";
-import getewaysPage from "./createPage/getewaysPage.js";
 import getewaysModelsPage from "./createPage/getewaysModelsPage.js";
 import sensorCategoriesPage from "./createPage/sensorCategoriesPage.js";
 import loggingPage from "./createPage/loggingPage.js";
@@ -12,7 +11,8 @@ import createTable from "./createPage/createComponent/createTable/createTable.js
 import inputGroupSearch from "./createPage/createComponent/createTable/inputGroupSearch.js";
 import sendFormTimezones from "./api/apiTimezones/sendFormTimezones.js";
 import { getDataStorage, saveDataJSON } from "./localStorage.js";
-
+import eventListener from "./eventListener.js";
+import sendFormGeteways from "./api/apiGeteways/sendFormGeteways.js";
 
 function routerNavigation(data) {
   console.log('data: ', data);
@@ -21,11 +21,13 @@ function routerNavigation(data) {
   const content = document.querySelector('.content');
   const titlePage = document.getElementById('title-page');
 
+  eventListener();
+
   if (titlePage.textContent === "Users") {
 
     saveDataJSON('location', 'Users');
 
-    const arrClass = ['col-sm-12', 'col-xl-12', 'mb-5', 'pe-xl-5', 'pe-md-4', 'px-sm-3'];
+    const arrClass = ['col-sm-12', 'col-xl-12'];
     const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
       'Photo', 'Login', 'Created', 'Updated'];
     const arr = [0, 0, 0, 1, 1, 1];
@@ -50,9 +52,7 @@ function routerNavigation(data) {
   if (titlePage.textContent === "Geteways") {
     saveDataJSON('location', 'Geteways');
     content.innerHTML = '';
-    const geteways = getewaysPage();
-    content.append(geteways);
-
+    sendFormGeteways();
   }
   if (titlePage.textContent === "Gateway models") {
     saveDataJSON('location', 'Gateway models');
