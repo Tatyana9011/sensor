@@ -1,6 +1,5 @@
 html {
   box-sizing: border-box;
-  overflow-y: scroll;
 }
 
 *,
@@ -17,6 +16,8 @@ body {
   /* background: linear-gradient(to right, #3a7fd5, #6ebce2); */
   /*   box-shadow: inset 0 -3px 10px rgb(0 0 0 / 10%); */
   color: #333;
+  max-height: 1000px !important;
+  overflow-y: scroll;
   -webkit-font-smoothing: inherit;
 }
 
@@ -254,8 +255,15 @@ figcaption {
   left: 0;
 }
 .content {
-  padding: 16px 16px 8px;
+  padding: 0 8px 0 8px;
 }
+/* .toggleNavBar {
+  background-color: #fff;
+}
+.divNavLink {
+  border: solid 1px;
+  padding: 15px;
+} */
 table {
   border-collapse: separate;
   box-sizing: border-box;
@@ -263,9 +271,10 @@ table {
   border-spacing: 2px;
   border-color: grey;
   background-color: white;
-  height: 700px;
+  height: 600px;
   display: block !important;
   margin-bottom: 0 !important;
+  margin-top: 8px !important;
 }
 
 .geteways-table {
@@ -292,17 +301,19 @@ table {
 }
 .geteways-row-events {
   max-height: 700px !important;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .col1 {
   width: 20px;
+  font-size: 12px;
 }
 th.col1 {
   width: 34px;
 }
 .col2 {
   width: 200px;
+  font-size: 12px;
 }
 .col2 .btn {
   font-size: small;
@@ -311,10 +322,11 @@ th.col1 {
 }
 .col3 {
   width: 300px;
+  font-size: 12px;
 }
 
 tbody {
-  max-height: 600px;
+  max-height: 500px;
   display: inline-block;
   width: 100%;
   overflow-y: auto;
@@ -394,8 +406,9 @@ td {
   padding-top: 0.755em;
 }
 .dataTables_paginate {
-  display: block;
-  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: right;
   padding-top: 0.25em;
   color: #333;
@@ -536,6 +549,68 @@ button {
 }
 .unnamed {
   opacity: 0.5;
+}
+
+.toggle input:checked + span:before {
+  background-color: white;
+}
+
+.toggle span {
+  display: flex;
+  width: 40px;
+  height: 24px;
+  border-radius: 99em;
+  background-color: #ccd7f3;
+  box-shadow: inset 1px 1px 1px 0 rgb(0 0 0 / 5%);
+  position: relative;
+  transition: 0.15s ease;
+  margin-bottom: 10px;
+}
+
+.toggle span:before {
+  content: "";
+  display: flex;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  height: 18px;
+  width: 18px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 15%);
+  transition: 0.15s ease;
+}
+
+.toggle input {
+  height: 1px;
+  width: 1px;
+}
+
+.toggle input:checked + span {
+  background-color: #434ce8;
+}
+
+.toggle input:checked + span:before {
+  background-color: #f8f8fa;
+  transform: translateX(calc(100% - 2px));
+}
+
+.toggle input:focus + span {
+  box-shadow: 0 0 0 4px #ecf3fe;
+}
+.toggle input:focus + span:before {
+  background-color: #f8f8fa;
+}
+.wrapper-toggle {
+  max-height: 20px;
+  display: block;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper-toggle label {
+  position: absolute;
+  top: -25px;
 }
 @keyframes wave {
   0% {

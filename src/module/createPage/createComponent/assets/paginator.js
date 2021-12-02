@@ -2,29 +2,31 @@
 'use strict';
 
 import creatButtonPages from './creatButtonPages.js';
+import updateData from '../../../api/apiUser/updateData.js';
 
-function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, portionSize = 2) {
+
+function paginator(data, currentPage = 1, portionNumber = 1, pageSize = 10, portionSize = 3) {
   console.log('paginator: ');
-  //pageSize сколько елементов на странице
-  //totalItemsCount - сколько всего елементов на сервере
-  //currentPage - текущая страница - при загрузке всегда первая
-  //portionSize = 5 //сколько страниц должно прийти с сервера //порция страниц
   const paginateButton = document.getElementById('paginate_button');
   const dataTablesPaginate = document.querySelector('.dataTables_paginate');
   const next = dataTablesPaginate.querySelector('.next');
   const previous = dataTablesPaginate.querySelector('.previous');
+  let totalItemsCount = 0;
   let pages = '';
+  paginateButton.innerHTML = '';
 
-  totalItemsCount = data.length;
-  console.log('totalItemsCount: ', totalItemsCount);
+  if (data) {
+    totalItemsCount = data.totalCount;
+    console.log('totalItemsCount: ', totalItemsCount);
+  }
 
   //номер порции
-  let portionNumber = 1;
+  //let portionNumber = 1;
   //сколько всего страниц
   const pageCount = Math.ceil(totalItemsCount / pageSize);
 
   if (!document.querySelector('.page')) {
-    pages = creatButtonPages(portionNumber, currentPage, portionSize, pageCount);
+    pages = creatButtonPages(portionNumber, +currentPage, portionSize, pageCount);
   }
   //количество страниц всего на сервере делим на порцию страниц которую необходимо прислать
   //(алучаем количество порция на сервере)
@@ -65,7 +67,7 @@ function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, po
       next.classList.add('visually-hidden');
     }
 
-    pages = creatButtonPages(portionNumber, currentPage, portionSize, pageCount);
+    pages = creatButtonPages(portionNumber, +currentPage, portionSize, pageCount);
     paginateButton.append(...pages);
   });
 
@@ -80,10 +82,13 @@ function paginator(data, currentPage = 1, totalItemsCount = 0, pageSize = 10, po
     button.forEach(btn => btn.classList.remove('action'));
 
     if (target.matches('button')) {
-      currentPage = +target.textContent;
-      pages = creatButtonPages(portionNumber, currentPage, portionSize, pageCount);
-      paginateButton.innerHTML = '';
-      paginateButton.append(...pages);
+      const title = document.getElementById('title-page');
+
+      if (title.textContent === "Users") {
+        const form = document.getElementById('updateUsers');
+        currentPage = target.textContent;
+        updateData(form, target.textContent, portionNumber);
+      }
     }
 
   });

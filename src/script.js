@@ -8,6 +8,7 @@ import updateData from './module/api/apiUser/updateData.js';
 import checkResponse from './module/checkResponse.js';
 import websocket from './module/websocket/websocket.js';
 import exit from './module/exit.js';
+import toggleNavBar from './module/createPage/createComponent/createTable/toggleNavBar.js';
 
 const wrapper = document.querySelector('.wrapper');
 window.addEventListener('resize', checkResponse);
@@ -21,6 +22,8 @@ if (!examinationDataStorage()) {
   const titlePage = document.getElementById('title-page');
   const form = document.getElementById('updateUsers');
   const location = getDataStorage('location');
+  const title = ['Clients', 'Administrators', 'External'];
+  toggleNavBar(title);
 
   if (location) {
     const wrapperRow = document.querySelector('.wrapper-row');

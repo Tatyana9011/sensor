@@ -12,7 +12,9 @@ function renderTableTimezones(newData) {
     table.innerHTML = '';
 
     const data = newData ? newData : getDataStorage('timezones');
-
+    /* ${obj.description ? `<button type="button" class="btn btn-primary">Hide</button>` :
+                `<button type="button" class="btn btn-primary">Show</button>`}
+                          </td> */
     if (data) {
       const ollTr = data.map((obj, index) => {
         lengthCorrection(obj);
@@ -22,12 +24,18 @@ function renderTableTimezones(newData) {
                       <td><input class='row-table col1' type="checkbox"></input></td>
                       <td class='col3'>${obj.description}</td>
                       <td class='col2'>${obj.name}</td>
-                      <td class='col3'>${obj.offsetMs}</td>
-                      <td class='col2'>
-                      ${obj.description ? `<button type="button" class="btn btn-primary">Hide</button>` :
-            `<button type="button" class="btn btn-primary">Show</button>`}
-                      </td>
-                      `;
+                      <td class='col2'>${obj.offsetMs}</td>
+                      <td class='col3'>
+                       ${obj.description ? `
+                       <div class = "wrapper-toggle" >
+                       <label class="toggle" style='z-index: ${data.length - index}'>
+                      <input type="checkbox" checked>
+                      <span></span>
+                      </label></div>` : `
+            <div class = "wrapper-toggle"><label class="toggle" style='z-index: ${data.length - index}'>
+                      <input type="checkbox">
+                      <span></span>
+                      </label></div>`}`;
         return creatTr;
       });
       table.append(...ollTr);

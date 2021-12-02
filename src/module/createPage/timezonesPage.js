@@ -2,32 +2,34 @@
 'use strict';
 
 import createTable from "./createComponent/createTable/createTable.js";
-import renderTableTimezones from "./createComponent/createTable/renderTableTimezones.js";
+import renderTableTimezones from "./createComponent/timezonesComponent/renderTableTimezones.js";
 import addHeadTable from "./createComponent/createTable/addHeadTable.js";
 import paginator from "./createComponent/assets/paginator.js";
 import highlightBtn from "./createComponent/createTable/btnHighlightAll.js";
 import alignmentRow from "./createComponent/createTable/alignmentRow.js";
 import { saveDataJSON } from "../localStorage.js";
 import inputGroupSearch from "./createComponent/createTable/inputGroupSearch.js";
-import addStatus from "../addStatus.js";
+import responseError from "../api/responseError.js";
 
 export const lengthCorrection = dataItem => {
   console.log('lengthCorrection: ');
   if (window.innerWidth < 990) {
     if (dataItem.description.length > 16) {
-      return dataItem.description = dataItem.description.replace(/\//, '/<br \/>');
+      dataItem.description = dataItem.description.replace(/\//, '/<br/>');
+      return dataItem.description;
     } else if (dataItem.description.length > 20) {
-      return dataItem.description = dataItem.description.replace(/\//g, '/<br \/>');
+      dataItem.description = dataItem.description.replace(/\//g, '/<br/>');
+      return dataItem.description;
     }
   } else if (window.innerWidth < 700) {
-    return dataItem.description = dataItem.description.replace(/\//g, '/<br \/>');
+    dataItem.description = dataItem.description.replace(/\//g, '/<br/>');
+    return dataItem.description;
   }
 };
 
 function timezonesPage(data) {
-  console.log('data: ', typeof JSON.parse(data));
 
-  if (typeof JSON.parse(data) === 'object') {
+  if (!JSON.parse(data).errorKey) {
     console.log('timezonesPage: ');
     saveDataJSON('timezones', JSON.parse(data));
     const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
@@ -60,7 +62,7 @@ function timezonesPage(data) {
         thead[i].style.fontSize = '14px';
       }
     } else if (window.innerWidth < 700) {
-
+      console.log('window.innerWidth: ');
     }
 
     inputGroupSearch(titleSearch, getData);
@@ -68,8 +70,7 @@ function timezonesPage(data) {
     highlightBtn();
     alignmentRow();
   } else {
-    const form = document.getElementById('status');
-    addStatus(form, data, 3000, 'rgb(255, 100, 10)');
+    responseError(null, data);
   }
 }
 

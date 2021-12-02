@@ -8,6 +8,7 @@ import sortBtn from "./createPage/createComponent/createTable/sortData/sortBtn.j
 import details from "./createPage/createComponent/userComponent/details.js";
 import burgerMenu from './burgerMenu.js';
 import getewaysPageDetails from "./createPage/createComponent/getewaysComponent/getewaysPageDetails.js";
+import handleActiveTab from "./createPage/createComponent/userComponent/handleActiveTab.js";
 
 export const addListener = event => {
   const name = getDataStorage('name');
@@ -68,7 +69,6 @@ export const addListener = event => {
     }
 
     title.textContent = text;
-    console.log('text: ', text);
 
     if (title.textContent === "Users") {
       const form = document.getElementById('updateUsers');
@@ -77,6 +77,33 @@ export const addListener = event => {
     }
     routerNavigation();
   }
+
+  if (target.matches('.filter-button')) {
+    const root = document.documentElement;
+    const targetTranslateValue = event.target.dataset.translateValue;
+    const form = document.getElementById('updateUsers');
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const textContent = target.textContent;
+
+    if (event.target.classList.contains("filter-button")) {
+      handleActiveTab(filterButtons, event, "filter-active");
+      root.style.setProperty("--translate-filters-slider", targetTranslateValue);
+    }
+
+    if (textContent === "Clients") {
+      //updateData = (form, page = 1, portionNumber = 1, userType = 'CLIENT')
+      updateData(form, 1, 1, "CLIENT");
+      return;
+    } else if (textContent === "Administrators") {
+      updateData(form, 1, 1, "ADMIN");
+      return;
+    } else if (textContent === "External") {
+      updateData(form, 1, 1, "EXTSYSTEM");
+      return;
+    }
+
+  }
+
 
   if (target.matches('.emphasize')) {
     const emphasize = document.querySelectorAll('.emphasize');

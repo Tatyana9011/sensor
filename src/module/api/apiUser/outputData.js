@@ -4,6 +4,8 @@ import { saveDataJSON, getDataStorage } from "../../localStorage.js";
 import updateData from "./updateData.js";
 import websocket from "../../websocket/websocket.js";
 import addStatus from "../../addStatus.js";
+import creatSensorPage from "../../createPage/creatSensorPage.js";
+import toggleNavBar from "../../createPage/createComponent/createTable/toggleNavBar.js";
 
 const outputData = (form, body, topic, data) => {
   console.log('form, body, topic, data: ', form, body, topic, data);
@@ -38,6 +40,12 @@ const outputData = (form, body, topic, data) => {
         modal.style.display = 'none';
       }
     }, 3000);
+
+    const wrapper = document.querySelector('.wrapper');
+    wrapper.innerHTML = '';
+    wrapper.append(creatSensorPage());
+    const title = ['Clients', 'Administrators', 'External'];
+    toggleNavBar(title);
 
     updateData(form);
     websocket(getDataStorage('URL'));

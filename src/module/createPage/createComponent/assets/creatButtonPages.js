@@ -7,9 +7,11 @@ function creatButtonPages(portionNumber, currentPage, portionSize, pageCount) {
   const creatButton = i => {
     const button = document.createElement('button');
     const arrClassList = ['page'];
+
     if (i === currentPage) {
       arrClassList.push('action');
     }
+
     button.classList.add(...arrClassList);
     button.textContent = `${i}`;
     pages.push(button);

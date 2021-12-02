@@ -51,6 +51,8 @@ function creatSensorPage() {
               </a>
             </div>
           </div>
+          <div class="row toggleNavBar "></div>
+          
           <div class="row content"></div>
         </div>
       </div>

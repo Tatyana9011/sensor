@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-export const postData = (URL, token) => fetch(`${URL}fsh/rest/Admin/adminUsers`, {
+export const postData = (URL, token) => fetch(`${URL}fsh/rest/Manage/adminUsers`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -9,6 +9,18 @@ export const postData = (URL, token) => fetch(`${URL}fsh/rest/Admin/adminUsers`,
     'FSH-AUTH-TOKEN': token
   }
 });
+//POST /rest/Manage/users
+export const postDataUsers = (URL, token, userType = '',
+  pageSize = 10, pageNumber = 0, returnTotalCount = false, userState = '') => fetch(`
+  ${URL}fsh/rest/Manage/users?userType=${userType}&pageSize=${pageSize}&pageNumber=${pageNumber}
+  &returnTotalCount=${returnTotalCount}&userState=${userState}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'FSH-AUTH-TOKEN': token
+    }
+  });
 //`https://testfsh.friendly-tech.com:10356/fsh/rest/System/generateRandom`
 export const generateRandom = () => fetch(`https://testfsh.friendly-tech.com:10356/fsh/rest/System/generateRandom`, {
   method: 'POST'
@@ -99,5 +111,5 @@ export const manageDevices = (URL, token) => fetch(`${URL}fsh/rest/Manage/device
     'FSH-AUTH-TOKEN': token
   }
 });
-
+///rest/Manage/hubDetails
 

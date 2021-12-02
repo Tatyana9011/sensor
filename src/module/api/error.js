@@ -19,8 +19,8 @@ export const error = (form, err, str) => {
       return text;
     }
   }
-
-  const message = text ? text : 'Unable connect to server URL address !!!';
+  //'Unable connect to server URL address !!!'
+  const message = text ? text : err;
   if (form) {
     addStatus(form, message, 60000, 'rgb(255, 100, 10)');
     console.log(err);

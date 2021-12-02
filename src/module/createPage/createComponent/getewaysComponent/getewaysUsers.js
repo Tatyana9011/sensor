@@ -8,55 +8,64 @@ import alignmentRow from "../createTable/alignmentRow.js";
 import getewaysManageDevices from "./getewaysManageDevices.js";
 import paginator from "../assets/paginator.js";
 import { saveDataJSON } from "../../../localStorage.js";
+import responseError from "../../../api/responseError.js";
 
 function getewaysUsers(data) {
   console.log('getewaysUsers ');
 
-  const content = document.querySelector('.content');
-  const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
-    'Created', 'Updated', 'serialNumber', 'Status'];
-  const arr = [0, 0, 1, 1, 1, 0];
-  const classAdd = ['col-sm-12', 'col-xl-12', 'p-1'];
-  const titleSearch = ['Created', 'Updated', 'serialNumber'];
-  const dataAtr = ['', '', 'created', 'updated', 'serialNumber', ''];
-  const loaderHtml = document.querySelector('.preloader');
+  if (JSON.parse(data).errorKey) {
+    responseError(null, data);
+  } else {
+    const content = document.querySelector('.content');
+    const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
+      'Created', 'Updated', 'serialNumber', 'Status'];
+    const arr = [0, 0, 1, 1, 1, 0];
+    const classAdd = ['col-sm-12', 'col-xl-12', 'p-1'];
+    const titleSearch = ['Created', 'Updated', 'serialNumber'];
+    const dataAtr = ['', '', 'created', 'updated', 'serialNumber', ''];
+    const loaderHtml = document.querySelector('.preloader');
 
-  if (loaderHtml) {
-    loaderHtml.remove();
-  }
-
-  const getData = JSON.parse(data).devices;
-
-  saveDataJSON('geteways', getData);
-
-  const addTable = createTable(classAdd);
-
-  const wrapper = document.createElement('div');
-  const arrClass = ['geteways-td'];
-
-  wrapper.classList.add(...arrClass);
-  wrapper.append(addTable);
-
-  content.append(wrapper);
-
-  getewaysManageDevices(getData);
-
-  const tableHead = document.querySelector('thead');
-  tableHead.append(addHeadTable(addTextHead, dataAtr, arr));
-
-  if (window.innerWidth < 990) {
-    const thead = document.querySelector('.thead-th').children;
-    for (let i = 0; i < thead.length; i++) {
-      thead[i].style.fontSize = '14px';
+    if (loaderHtml) {
+      setTimeout(() => {
+        loaderHtml.remove();
+      }, 10000);
     }
-  } else if (window.innerWidth < 700) {
 
+    const getData = JSON.parse(data).devices;
+
+    saveDataJSON('geteways', getData);
+
+    const addTable = createTable(classAdd);
+
+    const wrapper = document.createElement('div');
+    const arrClass = ['geteways-td'];
+
+    wrapper.classList.add(...arrClass);
+    wrapper.append(addTable);
+
+    content.append(wrapper);
+
+    getewaysManageDevices(getData);
+
+    const tableHead = document.querySelector('thead');
+    tableHead.append(addHeadTable(addTextHead, dataAtr, arr));
+
+    if (window.innerWidth < 990) {
+      const thead = document.querySelector('.thead-th').children;
+      for (let i = 0; i < thead.length; i++) {
+        thead[i].style.fontSize = '14px';
+      }
+    } else if (window.innerWidth < 700) {
+      console.log('window.innerWidth < 700: ');
+    }
+
+    inputGroupSearch(titleSearch, getData);
+    paginator(getData);
+    highlightBtn();
+    alignmentRow();
   }
 
-  inputGroupSearch(titleSearch, getData);
-  paginator(getData);
-  highlightBtn();
-  alignmentRow();
+
 
 }
 

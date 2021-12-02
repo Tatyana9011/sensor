@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-import { postData } from '../api.js';
+import { postDataUsers } from '../api.js';
 import resultEnd from './resultEnd.js';
 import { getDataStorage } from '../../localStorage.js';
 import { error } from '../error.js';
@@ -10,18 +10,18 @@ import addStatus from '../../addStatus.js';
 import creatLoader from '../../createPage/createComponent/assets/creatLoader.js';
 import errorProcessing from "../errorProcessing.js";
 
-const updateData = form => {
+const updateData = (form, page = 1, portionNumber = 1, userType = 'CLIENT') => {
   console.log('updateData: ');
 
   const getData = getDataStorage('name');
   const URL = getDataStorage('URL');
   const loader = creatLoader();
   let message = '';
-
+  //URL, token, userType = '', pageSize = 10, pageNumber = 0, returnTotalCount = false, userState = ''
   addStatus(form, loader.outerHTML, 60000, 'green');
-  postData(URL, getData.tokenValue)
+  postDataUsers(URL, getData.tokenValue, userType, 10, page, true, '')
     .then(res => message = errorProcessing(res))
-    .then(resultEnd.bind(this, form, getData.userId, getData.tokenValue))
+    .then(resultEnd.bind(this, form, getData.userId, getData.tokenValue, page, portionNumber))
     .catch(error.bind(this, form, message))
     .finally(btnExit);
 };

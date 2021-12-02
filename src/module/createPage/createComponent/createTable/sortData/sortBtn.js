@@ -2,7 +2,7 @@
 'use strict';
 
 import sortData from "./sortData.js";
-import renderTableTimezones from "../renderTableTimezones.js";
+import renderTableTimezones from "../../timezonesComponent/renderTableTimezones.js";
 import { init } from "../../../../init.js";
 import { getDataStorage } from "../../../../localStorage.js";
 import getewaysManageDevices from "../../getewaysComponent/getewaysManageDevices.js";

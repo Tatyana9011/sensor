@@ -14,27 +14,44 @@ import { getDataStorage, saveDataJSON } from "./localStorage.js";
 import eventListener from "./eventListener.js";
 import sendFormGeteways from "./api/apiGeteways/sendFormGeteways.js";
 
-function routerNavigation(data) {
+function routerNavigation(data, page = 1, portionNumber = 1) {
   console.log('data: ', data);
   console.log('----------------------------routerNavigation: ');
 
   const content = document.querySelector('.content');
   const titlePage = document.getElementById('title-page');
 
-  eventListener();
+
 
   if (titlePage.textContent === "Users") {
 
     saveDataJSON('location', 'Users');
 
-    const arrClass = ['col-sm-12', 'col-xl-12'];
-    const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
-      'Photo', 'Login', 'Created', 'Updated'];
-    const arr = [0, 0, 0, 1, 1, 1];
-    const titleSearch = ['Login', 'Created', 'Updated'];
-    const dataAtr = ['', '', '', 'login', 'created', 'updated'];
+    const arrClass = ['col-sm-12', 'col-xl-12', 'tableUsers'];
+    let addTextHead = [];
+    let arr = [];
+    let titleSearch = [];
+    let dataAtr = [];
+
+    const newData = data ? data : getDataStorage('data');
+    const userStatus = newData.users[0].type;
+
 
     content.innerHTML = '';
+
+    if (userStatus === "CLIENT" || userStatus === "EXTSYSTEM") {
+      addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`, 'Created', 'Login',
+        'State', 'Name', 'email', 'phone', 'type'];
+      arr = [0, 0, 1, 1, 1, 1, 0, 0, 0];
+      titleSearch = ['Login', 'UserStat'];
+      dataAtr = ['', '', 'created', 'login', 'userStat', 'name', '', '', ''];
+    } else if (userStatus === "ADMIN") {
+      addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`, 'Photo', 'Login',
+        'Name', 'created', 'updated'];
+      arr = [0, 0, 0, 1, 1, 1, 1];
+      titleSearch = ['Login', 'Created', 'Updated'];
+      dataAtr = ['', '', '', 'login', 'name', 'created', 'updated'];
+    }
 
     const usersTable = createTable(arrClass);
     content.append(usersTable);
@@ -42,9 +59,7 @@ function routerNavigation(data) {
     const tableHead = document.querySelector('thead');
     tableHead.append(addHeadTable(addTextHead, dataAtr, arr));
 
-    const newData = data ? data : getDataStorage('data');
-
-    init(newData);
+    init(newData, page, portionNumber, userStatus);
     inputGroupSearch(titleSearch, newData);
 
   }
@@ -90,7 +105,7 @@ function routerNavigation(data) {
     content.append(tools);
 
   }
-
+  eventListener();
 }
 
 export default routerNavigation;

@@ -1,6 +1,6 @@
 /* eslint-disable strict */
 'use strict';
-import creatSensorPage from "../../createPage/creatSensorPage.js";
+
 import { saveDataJSON, getDataStorage } from "../../localStorage.js";
 import routerNavigation from '../../routerNavigation.js';
 import { photoIdentifier } from "../api.js";
@@ -8,12 +8,10 @@ import responsePhoto from "./photoApi/responsePhoto.js";
 import { error } from "../error.js";
 
 
-function resultEnd(form, userId, token, data) {
-  console.log('form, userId, token, data: ', form, userId, token, data);
+function resultEnd(form, userId, token, page = 1, portionNumber = 1, data) {
   console.log('resultEnd: ');
 
   const login = document.querySelector('.login');
-  const wrapper = document.querySelector('.wrapper');
   const modalBackdrop = document.querySelector('.modal-backdrop');
   const newData = JSON.parse(data);
   saveDataJSON('data', newData);
@@ -26,13 +24,14 @@ function resultEnd(form, userId, token, data) {
     modalBackdrop.remove();
   }
 
-  wrapper.innerHTML = '';
-  wrapper.append(creatSensorPage());
-  routerNavigation(newData);
+  routerNavigation(newData, page, portionNumber);
 
-  const userPhoto = newData.find(item => item.id === userId);
+  const userPhoto = newData.users.find(item => item.id === userId);
 
-  if (userPhoto.avatarUrl) {
+  const body = document.querySelector('body');
+  body.style.overflowY = "scroll";
+
+  if (userPhoto && userPhoto.avatarUrl) {
 
     const URL = getDataStorage('URL');
     const identifier = userPhoto.avatarUrl.replace(/rest%2FResource%2Fphoto%2F/, '');

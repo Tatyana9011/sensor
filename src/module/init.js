@@ -6,14 +6,21 @@ import deleteSensor from './delete.js';
 import addRow from './createPage/createComponent/userComponent/addRow.js';
 import paginator from './createPage/createComponent/assets/paginator.js';
 import checkResponse from './checkResponse.js';
-import renderTable from './createPage/createComponent/createTable/renderTableUsers.js';
+import renderTableClient from './createPage/createComponent/userComponent/renderTableClient.js';
 import alignmentRow from './createPage/createComponent/createTable/alignmentRow.js';
+import renderTableAdmin from './createPage/createComponent/userComponent/renderTableAdmin.js';
 
-export const init = data => {
+
+export const init = (data, page = 1, portionNumber = 1, userStatus = "CLIENT") => {
   console.log('init: ');
-  renderTable(data);
+  if (userStatus === "CLIENT" || userStatus === "EXTSYSTEM") {
+    renderTableClient(data);
+  } else if (userStatus === "ADMIN") {
+    renderTableAdmin(data);
+  }
+
   alignmentRow();
-  paginator(data);
+  paginator(data, page, portionNumber);
   highlightBtn();
   addRow();
   checkResponse();

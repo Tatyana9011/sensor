@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-import renderTableTimezones from "./renderTableTimezones.js";
+import renderTableTimezones from "../timezonesComponent/renderTableTimezones.js";
 import { init } from "../../../init.js";
 
 const inputGroupSearch = (title, data) => {

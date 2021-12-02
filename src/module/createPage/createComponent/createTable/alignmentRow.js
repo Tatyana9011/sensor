@@ -8,12 +8,15 @@ function alignmentRow() {
     const tbody = document.querySelector('tbody').children;
     const thead = document.querySelector('.thead-th');
     const theadTh = thead.querySelectorAll('th');
-    const td = tbody[0].querySelectorAll('td');
 
-    for (let i = 0; i < td.length; i++) {
+    if (tbody[0]) {
+      const td = tbody[0].querySelectorAll('td');
 
-      theadTh[i].style.width = td[i].offsetWidth + 'px';
+      for (let i = 0; i < td.length; i++) {
 
+        theadTh[i].style.width = td[i].offsetWidth + 'px';
+
+      }
     }
   }
 }
