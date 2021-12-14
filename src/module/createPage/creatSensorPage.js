@@ -39,9 +39,6 @@ function creatSensorPage() {
               <h2 id='title-page'>Users</h2>
 
             </div>
-            <form id='updateUsers' name='updateUsers'>
-              <div class="massager mb-2"></div>
-            </form>
             <div class="position-absolute w-25 top-2 end-0">
               <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navigation-item">
                 <img alt='UserPhoto' class='img-avatar avatar'  src='./img/avatar.jpg' />
@@ -52,14 +49,13 @@ function creatSensorPage() {
             </div>
           </div>
           <div class="row toggleNavBar "></div>
-          
+           <form id='updateUsers' name='updateUsers'>
+              <div class="massager mb-2 overflow-hidden"></div>
+            </form>
           <div class="row content"></div>
         </div>
       </div>
       <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog"> </div>
-      </div>
       <div class="mob-menu-btn">
 						<span></span>
 						<span></span>

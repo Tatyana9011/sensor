@@ -16,7 +16,7 @@ const addStatus = (form, status, time, color = 'red') => {
         margin: 5px 0;
         }`);
 
-  const stratus = `<div class="preloader">${status}</div> `;
+  const stratusMassage = `<div class="preloader">${status}</div> `;
 
   document.head.append(style);
   if (!div) {
@@ -24,21 +24,22 @@ const addStatus = (form, status, time, color = 'red') => {
 
     if (login) {
       const elem = login.querySelector('.massager');
-      elem.innerHTML = stratus;
+      elem.innerHTML = ``;
+      elem.innerHTML = stratusMassage;
     }
 
   } else {
-
-    div.innerHTML = stratus;
+    div.innerHTML = ``;
+    div.innerHTML = stratusMassage;
 
   }
 
-  loaderHtml = document.querySelector('.preloader');
+  loaderHtml = document.querySelectorAll('.preloader');
 
   setTimeout(() => {
 
     if (loaderHtml) {
-      loaderHtml.remove();
+      loaderHtml.forEach(item => item.innerHTML = '');
       document.head.querySelector('style').remove();
     }
 

@@ -6,14 +6,15 @@ import websocket from "../../websocket/websocket.js";
 import addStatus from "../../addStatus.js";
 import creatSensorPage from "../../createPage/creatSensorPage.js";
 import toggleNavBar from "../../createPage/createComponent/createTable/toggleNavBar.js";
+import addPhotoUsers from "./addPhotoUsers.js";
+import modal from "../../modal.js";
 
 const outputData = (form, body, topic, data) => {
-  console.log('form, body, topic, data: ', form, body, topic, data);
   console.log('outputData: ');
   if (JSON.parse(data).userState === "WRONG_HUB") {
 
     const message = "WRONG_HUB";
-    addStatus(form, message, 60000, 'rgb(255, 100, 10)');
+    addStatus(form, message, 10000, 'rgb(255, 100, 10)');
 
   } else if (JSON.parse(data).userState === "ACTIVE") {
 
@@ -22,30 +23,24 @@ const outputData = (form, body, topic, data) => {
 
     form.reset();
 
-    const btnSubmit = form.querySelector('button[type="submit"]');
-    if (btnSubmit) {
-      btnSubmit.setAttribute('disabled', 'true');
-      btnSubmit.classList.remove('btn-primary');
-      btnSubmit.classList.add('btn-secondary');
-    }
-
     setTimeout(() => {
       const loaderHtml = document.querySelector('.preloader');
       if (loaderHtml) {
         loaderHtml.remove();
-      }
-
-      const modal = form.closest('.popup');
-      if (modal) {
-        modal.style.display = 'none';
       }
     }, 3000);
 
     const wrapper = document.querySelector('.wrapper');
     wrapper.innerHTML = '';
     wrapper.append(creatSensorPage());
-    const title = ['Clients', 'Administrators', 'External'];
-    toggleNavBar(title);
+    const sensor = document.querySelector('.sensor');
+    sensor.append(modal());
+
+    const formUsers = document.getElementById('updateUsers');
+    addPhotoUsers(formUsers);
+    toggleNavBar();
+    const root = document.documentElement;
+    root.style.setProperty("--translate-filters-slider", 0);
 
     updateData(form);
     websocket(getDataStorage('URL'));

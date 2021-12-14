@@ -18,10 +18,10 @@ const updateData = (form, page = 1, portionNumber = 1, userType = 'CLIENT') => {
   const loader = creatLoader();
   let message = '';
   //URL, token, userType = '', pageSize = 10, pageNumber = 0, returnTotalCount = false, userState = ''
-  addStatus(form, loader.outerHTML, 60000, 'green');
+  addStatus(form, loader.outerHTML, 10000, 'green');
   postDataUsers(URL, getData.tokenValue, userType, 10, page, true, '')
-    .then(res => message = errorProcessing(res))
-    .then(resultEnd.bind(this, form, getData.userId, getData.tokenValue, page, portionNumber))
+    .then(res => message = errorProcessing(form, res))
+    .then(resultEnd.bind(this, form, page, portionNumber))
     .catch(error.bind(this, form, message))
     .finally(btnExit);
 };

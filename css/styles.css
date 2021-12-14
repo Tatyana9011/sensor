@@ -132,7 +132,7 @@ figcaption {
   position: absolute;
   top: 0;
   left: 0;
-  max-width: 75%;
+  max-width: 100%;
   height: 100%;
   opacity: 0;
   font-size: 0;
@@ -142,12 +142,9 @@ figcaption {
 
 .file__button {
   width: 50%;
-  color: rgb(66, 54, 14) !important;
-  background-color: #ffdb4d !important;
+  height: 50%;
   padding: 10px !important;
   border: none !important;
-  border-radius: 50px !important;
-  box-shadow: 3px 3px 3px #6b4559 !important;
   outline: none !important;
   display: flex;
   justify-content: center;
@@ -155,37 +152,31 @@ figcaption {
   z-index: 100;
   transition: all 0.3s ease-in-out;
 }
-.file__button:hover {
-  background-color: #d4b741 !important;
-  color: rgb(88, 72, 19) !important;
-}
+
 .file__preview {
   max-width: 50px;
-  border-radius: 8px;
-  background: #e0e0e0;
-  box-shadow: 8px 8px 15px #bebebe, -8px -8px 15px #ffffff;
+  max-height: 50px;
+  border-radius: 50px;
   transition: transform 0.3s ease-in-out;
 }
 
 .file__preview img {
   max-width: 50px;
-  transition: transform 0.3s ease-in-out;
+  max-height: 50px;
   z-index: 50 !important;
-}
-
-.file__preview img:hover {
-  z-index: 100 !important;
-  transform: scale(5);
-  border-radius: 8px;
-  background: #e0e0e0;
-  box-shadow: 7px 7px 18px #cccccc, -7px -7px 18px #f4f4f4;
+  border-radius: 50px;
 }
 
 .delete-photo {
   position: absolute;
-  right: -15;
+  top: 10%;
+  right: -10%;
+  width: 0 !important;
+  height: 0 !important;
 }
-
+.modal-title {
+  margin-left: 20px;
+}
 .left-menu {
   vertical-align: top;
   text-align: left;
@@ -398,6 +389,24 @@ td {
   background-color: #fff;
   padding: 10px 10px;
   margin-bottom: 50px;
+}
+.details-users {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin: 5px;
+}
+.details-users-title {
+  color: rgb(66, 54, 14) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100px;
+}
+.details-users-value {
+  padding: 5px;
+  display: flex;
+  min-width: 70%;
 }
 
 .dataTables_info {
@@ -612,6 +621,7 @@ button {
   position: absolute;
   top: -25px;
 }
+
 @keyframes wave {
   0% {
     top: 0;

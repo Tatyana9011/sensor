@@ -14,10 +14,10 @@ const sendFormTimezones = () => {
   const URL = getDataStorage('URL');
   const form = document.getElementById('updateUsers');
 
-  addStatus(form, loader.outerHTML, 60000, 'green');
+  addStatus(form, loader.outerHTML, 10000, 'green');
 
   timezonesPost(URL)
-    .then(res => errorProcessing(res))
+    .then(res => errorProcessing(form, res))
     .then(timezonesPage)
     .catch(error.bind(this, form));
 };

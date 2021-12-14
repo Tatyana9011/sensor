@@ -9,6 +9,9 @@ import checkResponse from './module/checkResponse.js';
 import websocket from './module/websocket/websocket.js';
 import exit from './module/exit.js';
 import toggleNavBar from './module/createPage/createComponent/createTable/toggleNavBar.js';
+import updateDataType from './module/createPage/createComponent/userComponent/updateDataType.js';
+import addPhotoUsers from './module/api/apiUser/addPhotoUsers.js';
+import modal from './module/modal.js';
 
 const wrapper = document.querySelector('.wrapper');
 window.addEventListener('resize', checkResponse);
@@ -18,12 +21,12 @@ if (!examinationDataStorage()) {
 } else {
 
   wrapper.append(creatSensorPage());
-
+  const sensor = document.querySelector('.sensor');
+  sensor.append(modal());
   const titlePage = document.getElementById('title-page');
   const form = document.getElementById('updateUsers');
   const location = getDataStorage('location');
-  const title = ['Clients', 'Administrators', 'External'];
-  toggleNavBar(title);
+  addPhotoUsers(form);
 
   if (location) {
     const wrapperRow = document.querySelector('.wrapper-row');
@@ -47,7 +50,8 @@ if (!examinationDataStorage()) {
 
     if (location === 'Users') {
       titlePage.textContent = 'Users';
-      updateData(form);
+      toggleNavBar();
+      updateDataType();
     }
     if (location === 'Timezones') {
       titlePage.textContent = 'Timezones';

@@ -15,10 +15,10 @@ const sendFormGeteways = () => {
   const form = document.getElementById('updateUsers');
   const getData = getDataStorage('name');
 
-  addStatus(form, loader.outerHTML, 60000, 'green');
+  addStatus(form, loader.outerHTML, 10000, 'green');
 
   manageDevices(URL, getData.tokenValue)
-    .then(res => errorProcessing(res))
+    .then(res => errorProcessing(form, res))
     .then(getewaysUsers)
     .catch(error.bind(this, form));
 };

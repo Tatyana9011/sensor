@@ -1,12 +1,14 @@
 /* eslint-disable strict */
 'use strict';
 
-import updateData from "../updateData.js";
+import updateDataType from "../../../createPage/createComponent/userComponent/updateDataType.js";
 
-const responseDeletePhoto = data => {
+const responseDeletePhoto = (formPreview, data) => {
   console.log('responseDeletePhoto: ');
-  const form = document.getElementById('updateUsers');
-  updateData(form);
+
+  formPreview.innerHTML = `<img alt='UserPhoto' class='img-avatar unnamed' src='./img/unnamed.jpg' />`;
+
+  updateDataType();
 };
 
 export default responseDeletePhoto;

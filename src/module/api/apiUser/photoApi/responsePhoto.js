@@ -2,12 +2,15 @@
 'use strict';
 
 import { getDataStorage } from "../../../localStorage.js";
-import deletePhoto from "./deletePhoto.js";
 import formPreview from "../../../createPage/createComponent/userComponent/formPreview.js";
+import responseError from "../../responseError.js";
 
-const responsePhoto = (id, dataImg) => {
+const responsePhoto = (id, formAddPhoto, dataImg) => {
+  console.log('formAddPhoto: ', formAddPhoto);
+  console.log('id, dataImg: ', id, dataImg);
   console.log('responsePhoto: ');
-  if (dataImg) {
+
+  if (dataImg && responseError(formAddPhoto, dataImg)) {
     const imageAvatar = document.querySelector('.avatar');
     const reader = new FileReader();
     const userId = getDataStorage('name').userId;
@@ -20,15 +23,8 @@ const responsePhoto = (id, dataImg) => {
         }
 
         const formPreviewDiv = document.getElementById('formPreview');
-        if (formPreviewDiv) {
+        if (formAddPhoto && formPreviewDiv) {
           formPreview(id, e);
-
-          const deletePhotoBtn = document.querySelector('.delete-photo');
-
-          deletePhotoBtn.addEventListener('click', event => {
-            event.preventDefault();
-            deletePhoto(id, formPreviewDiv);
-          });
         }
 
       } else {
@@ -38,8 +34,7 @@ const responsePhoto = (id, dataImg) => {
     });
 
     reader.readAsDataURL(dataImg);
-  } else {
-    console.log('----e.target.result фото не пришло с сервера');
+
   }
 
 

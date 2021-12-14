@@ -15,37 +15,36 @@ const sendForm = (form, body, topic) => {
   let message = '';
   if (form) {
 
-    addStatus(form, loader.outerHTML, 60000, 'green');
+    addStatus(form, loader.outerHTML, 10000, 'green');
 
     if (form.getAttribute('name') === 'authorization') {
       authData(body.URL, body, topic)
-        .then(res => message = errorProcessing(res))
+        .then(res => message = errorProcessing(form, res))
         .then(outputData.bind(this, form, body, topic))
         .catch(error.bind(this, form, message));
     }
 
     if (form.getAttribute('name') === 'row') {
-      console.log('form: ', form);
 
-      addStatus(form, loader.outerHTML, 60000, 'green');
+      addStatus(form, loader.outerHTML, 10000, 'green');
 
       const URL = getDataStorage('URL');
       const getData = getDataStorage('name');
 
       putUserData(URL, body, getData.tokenValue)
-        .then(res => message = errorProcessing(res))
+        .then(res => message = errorProcessing(form, res))
         .then(responseError.bind(this, form))
         .catch(error.bind(this, form, message));
     }
     if (form.getAttribute('name') === 'delete') {
 
-      addStatus(form, loader.outerHTML, 60000, 'green');
+      addStatus(form, loader.outerHTML, 10000, 'green');
 
       const URL = getDataStorage('URL');
       const getData = getDataStorage('name');
 
       deleteUserData(URL, getData.tokenValue, body)
-        .then(res => message = errorProcessing(res))
+        .then(res => message = errorProcessing(form, res))
         .then(responseError.bind(this, form))
         .catch(error.bind(this, form, message));
     }

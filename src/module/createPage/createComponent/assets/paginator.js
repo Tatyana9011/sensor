@@ -3,9 +3,9 @@
 
 import creatButtonPages from './creatButtonPages.js';
 import updateData from '../../../api/apiUser/updateData.js';
+import { pageSize, portionSize } from "../../../include/constant.js";
 
-
-function paginator(data, currentPage = 1, portionNumber = 1, pageSize = 10, portionSize = 3) {
+function paginator(data, currentPage = 1, portionNumber = 1, pageSizeUser = pageSize, portionSizeUser = portionSize) {
   console.log('paginator: ');
   const paginateButton = document.getElementById('paginate_button');
   const dataTablesPaginate = document.querySelector('.dataTables_paginate');
@@ -17,20 +17,19 @@ function paginator(data, currentPage = 1, portionNumber = 1, pageSize = 10, port
 
   if (data) {
     totalItemsCount = data.totalCount;
-    console.log('totalItemsCount: ', totalItemsCount);
   }
 
   //номер порции
   //let portionNumber = 1;
   //сколько всего страниц
-  const pageCount = Math.ceil(totalItemsCount / pageSize);
+  const pageCount = Math.ceil(totalItemsCount / pageSizeUser);
 
   if (!document.querySelector('.page')) {
-    pages = creatButtonPages(portionNumber, +currentPage, portionSize, pageCount);
+    pages = creatButtonPages(portionNumber, +currentPage, portionSizeUser, pageCount);
   }
   //количество страниц всего на сервере делим на порцию страниц которую необходимо прислать
   //(алучаем количество порция на сервере)
-  const portionCount = Math.ceil(pageCount / portionSize);
+  const portionCount = Math.ceil(pageCount / portionSizeUser);
   //нажимаем на кнопку назад (в кнопки прибавляют в сторону уменьшения )
   if (portionNumber <= 1) {
     previous.classList.add('visually-hidden');
@@ -38,7 +37,7 @@ function paginator(data, currentPage = 1, portionNumber = 1, pageSize = 10, port
   if (portionNumber >= portionCount) {
     next.classList.add('visually-hidden');
   }
-  /* if (portionNumber === 1 && pages.length > portionSize) {
+  /* if (portionNumber === 1 && pages.length > portionSizeUser) {
     next.classList.remove('visually-hidden');
     // next.removeAttribute('disabled');
   } */

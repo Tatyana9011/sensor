@@ -6,20 +6,26 @@ import renderTableTimezones from "../../timezonesComponent/renderTableTimezones.
 import { init } from "../../../../init.js";
 import { getDataStorage } from "../../../../localStorage.js";
 import getewaysManageDevices from "../../getewaysComponent/getewaysManageDevices.js";
+import pageNow from "../../assets/pageNow.js";
 
 function sortBtn(target, data) {
   console.log('sortBtn: ');
   const location = getDataStorage('location');
+  const userType = getDataStorage('userType');
   target.classList.add('btnFilter');
   target.classList.toggle('active');
+
+  const objPagenate = pageNow();
 
   if (!target.matches('.active')) {
 
     const newData = sortData(target.dataset.name, data, 'active');
 
-    if (location === "Users") {
 
-      init(newData);
+    if (location === "Users") {
+      //newData, page, portionNumber, userStatus
+
+      init(newData, +objPagenate.page, objPagenate.portionNumber, userType);
 
 
     } else if (location === "Timezones") {
@@ -38,7 +44,7 @@ function sortBtn(target, data) {
 
     if (location === "Users") {
 
-      init(newData);
+      init(newData, +objPagenate.page, objPagenate.portionNumber, userType);
 
     } else if (location === "Timezones") {
 

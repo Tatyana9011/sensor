@@ -2,15 +2,14 @@
 'use strict';
 
 
-const handleActiveTab = (tabs, event, className) => {
+const handleActiveTab = (tabs, target, className) => {
   console.log('handleActiveTab: ');
   tabs.forEach(tab => {
     tab.classList.remove(className);
   });
 
-  if (!event.target.classList.contains(className)) {
-    console.log('event.target.classList.contains(className): ', event.target.classList.contains(className));
-    event.target.classList.add(className);
+  if (!target.classList.contains(className)) {
+    target.classList.add(className);
   }
 };
 

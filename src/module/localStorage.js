@@ -1,8 +1,6 @@
 /* eslint-disable strict */
 'use strict';
 
-import exit from "./exit.js";
-
 export function saveDataJSON(name, data) {
   localStorage.setItem(name, JSON.stringify(data));
 }
@@ -18,9 +16,8 @@ export function removeDataStorage(name) {
 export function examinationDataStorage() {
   const name = getDataStorage('name');
   const URL = getDataStorage('URL');
-  const data = getDataStorage('data');
 
-  if (!name || !URL || !data) {
+  if (!name || !URL) {
     return false;
   }
   return true;

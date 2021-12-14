@@ -7,9 +7,16 @@ import addHeadTable from "./createComponent/createTable/addHeadTable.js";
 import paginator from "./createComponent/assets/paginator.js";
 import highlightBtn from "./createComponent/createTable/btnHighlightAll.js";
 import alignmentRow from "./createComponent/createTable/alignmentRow.js";
-import { saveDataJSON } from "../localStorage.js";
 import inputGroupSearch from "./createComponent/createTable/inputGroupSearch.js";
 import responseError from "../api/responseError.js";
+import state from "../include/state.js";
+import {
+  addTextHeadTimezones,
+  arrTimezones,
+  classAddTimezones,
+  titleSearchTimezones,
+  dataAtrTimezones
+} from "../include/constant.js";
 
 export const lengthCorrection = dataItem => {
   console.log('lengthCorrection: ');
@@ -31,13 +38,12 @@ function timezonesPage(data) {
 
   if (!JSON.parse(data).errorKey) {
     console.log('timezonesPage: ');
-    saveDataJSON('timezones', JSON.parse(data));
-    const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
-      'Name', 'Offset GMT', 'Offset Ms', 'Visibility'];
-    const arr = [0, 0, 1, 1, 0, 0];
-    const classAdd = ['col-sm-12', 'col-xl-12'];
-    const titleSearch = ['Name', 'Offset GMT'];
-    const dataAtr = ['', '', 'description', 'name', '', ''];
+    state.timezonesData = JSON.parse(data);
+    const addTextHead = addTextHeadTimezones;
+    const arr = arrTimezones;
+    const classAdd = classAddTimezones;
+    const titleSearch = titleSearchTimezones;
+    const dataAtr = dataAtrTimezones;
 
     const loaderHtml = document.querySelector('.preloader');
     if (loaderHtml) {

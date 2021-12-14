@@ -12,14 +12,27 @@ function inputValidate(event) {
     inputURL = form.querySelector('input[name="URL"]'),
     value = target.value,
     allInput = form.querySelectorAll('input'),
-    newInput = [];
+    newInput = [],
+    button = form.querySelector('button[type="submit"]');
+
+  console.log('btnSaveChanges: ', btnSaveChanges);
+
+  if (button) {
+    button.classList.add('btn-primary');
+    button.classList.remove('btn-outline-primary');
+  }
+
   if (target.getAttribute('name') !== 'file') {
     if (value.match(/[а-яА-ЯЁё]/)) {
       addStatus(form, 'Change your keyboard layout!', 3000, 'rgb(255, 100, 10)');
     }
 
-    if (target) {
+    if (target && target.getAttribute('name') !== 'name') {
       const getValue = value.trim().replace(/\s/, '').replace(/[а-яА-ЯЁё]/, '').replace(/[_]{2,}/, '_')
+        .replace(/[-]{2,}/, '-');
+      target.value = getValue;
+    } else if (target.getAttribute('name') === 'name') {
+      const getValue = value.replace(/[а-яА-ЯЁё]/, '').replace(/[_]{2,}/, '_')
         .replace(/[-]{2,}/, '-');
       target.value = getValue;
     }
@@ -29,15 +42,19 @@ function inputValidate(event) {
     if (item.value) {
       return newInput.push(item.value);
     }
-    if (item.getAttribute('name') === 'file' && !item.value) {
+    if (item.getAttribute('type') === 'file' && !item.value) {
+      return newInput.push('0');
+    }
+    if (item.getAttribute('name') === 'Phone' && !item.value) {
       return newInput.push('0');
     }
   });
 
   const removeDisableLoginBtn = str => {
     if (str) {
-      btnSaveChanges.classList.remove('btn-secondary');
+      btnSaveChanges.classList.remove('btn-outline-primary');
       btnSaveChanges.classList.add('btn-primary');
+      button.removeAttribute('disabled');
       if (login) {
         login.removeAttribute('disabled');
       }
@@ -45,12 +62,14 @@ function inputValidate(event) {
       if (login) {
         login.setAttribute('disabled', 'true');
       }
-      btnSaveChanges.classList.add('btn-secondary');
+      btnSaveChanges.classList.add('btn-outline-primary');
       btnSaveChanges.classList.remove('btn-primary');
     }
   };
 
   removeDisableLoginBtn(newInput.length === allInput.length);
+  console.log('allInput.length: ', allInput.length);
+  console.log('newInput.length: ', newInput.length);
 
   if (inputURL) {
     if (inputURL.value === '/') {
@@ -61,8 +80,6 @@ function inputValidate(event) {
       .match(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/g);
     removeDisableLoginBtn(getValue && newInput.length === allInput.length);
   }
-
-
 }
 
 export default inputValidate;

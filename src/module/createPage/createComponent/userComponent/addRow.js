@@ -31,7 +31,13 @@ function addRow() {
       const body = {};
 
       formData.forEach((val, key) => {
-        body[key] = val;
+        console.log('val, key: ', val, key);
+        if (key === "email" || key === "phone" || key === "name" || key === "login") {
+          console.log('key: ', key);
+          body[key] = encodeURIComponent(val);
+        } else {
+          body[key] = val;
+        }
       });
       body.adminRole = "CSR";
 

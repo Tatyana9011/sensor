@@ -1,14 +1,13 @@
 /* eslint-disable strict */
 'use strict';
 
-import { getDataStorage } from '../../../localStorage.js';
+import state from '../../../include/state.js';
 
 function renderTableAdmin(newData) {
   const table = document.querySelector('tbody');
   table.innerHTML = '';
 
-  const data = newData ? newData : getDataStorage('data');
-  console.log('data: ', data);
+  const data = newData ? newData : state.usersData;
 
   if (data) {
     const ollTr = data.users.map((obj, index) => {
@@ -21,14 +20,19 @@ function renderTableAdmin(newData) {
                       <img alt='UserPhoto' class='img-avatar' src='./img/unnamed.jpg'/>` : `
                       <img alt='UserPhoto' class='img-avatar unnamed' src='./img/unnamed.jpg' />`}</td>
                       <td data-bs-toggle="modal" data-bs-target="#exampleModal"
-                      class='overflow-hidden text-break col2'>>${obj.login}</td>
+                      class='overflow-hidden text-break col2'>${obj.login}</td>
                       <td data-bs-toggle="modal" data-bs-target="#exampleModal"
                       class='overflow-hidden text-break col2'>${obj.name}</td>
                       <td data-bs-toggle="modal" data-bs-target="#exampleModal"
                       class='overflow-hiddentext-break col2'>${obj.created}</td>
                       <td data-bs-toggle="modal" data-bs-target="#exampleModal"
                       class='overflow-hiddentext-break col2'>${obj.updated}</td>
-                      `;
+                      
+                      ${(obj.phone && obj.phone !== "undefined") ? `
+                      <td data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      class='overflow-hidden text-break col2'>${obj.phone}</td>` : `
+                      <td data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      class='overflow-hidden text-break col2'></td>`  }  `;
       return creatTr;
     });
     table.append(...ollTr);

@@ -7,8 +7,13 @@ import highlightBtn from "../createTable/btnHighlightAll.js";
 import alignmentRow from "../createTable/alignmentRow.js";
 import getewaysManageDevices from "./getewaysManageDevices.js";
 import paginator from "../assets/paginator.js";
-import { saveDataJSON } from "../../../localStorage.js";
 import responseError from "../../../api/responseError.js";
+import state from "../../../include/state.js";
+import {
+  addTextHeadGeteways, classAddGeteways,
+  arrGeteways, titleSearchGeteways,
+  dataAtrGeteways
+} from "../../../include/constant.js";
 
 function getewaysUsers(data) {
   console.log('getewaysUsers ');
@@ -17,12 +22,11 @@ function getewaysUsers(data) {
     responseError(null, data);
   } else {
     const content = document.querySelector('.content');
-    const addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`,
-      'Created', 'Updated', 'serialNumber', 'Status'];
-    const arr = [0, 0, 1, 1, 1, 0];
-    const classAdd = ['col-sm-12', 'col-xl-12', 'p-1'];
-    const titleSearch = ['Created', 'Updated', 'serialNumber'];
-    const dataAtr = ['', '', 'created', 'updated', 'serialNumber', ''];
+    const addTextHead = addTextHeadGeteways;
+    const arr = arrGeteways;
+    const classAdd = classAddGeteways;
+    const titleSearch = titleSearchGeteways;
+    const dataAtr = dataAtrGeteways;
     const loaderHtml = document.querySelector('.preloader');
 
     if (loaderHtml) {
@@ -33,7 +37,7 @@ function getewaysUsers(data) {
 
     const getData = JSON.parse(data).devices;
 
-    saveDataJSON('geteways', getData);
+    state.getewaysData = getData;
 
     const addTable = createTable(classAdd);
 

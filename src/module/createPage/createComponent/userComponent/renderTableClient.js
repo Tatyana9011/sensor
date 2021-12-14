@@ -1,13 +1,13 @@
 /* eslint-disable strict */
 'use strict';
 
-import { getDataStorage } from '../../../localStorage.js';
+import state from '../../../include/state.js';
 
 function renderTable(newData) {
   const table = document.querySelector('tbody');
   table.innerHTML = '';
 
-  const data = newData ? newData : getDataStorage('data');
+  const data = newData ? newData : state.usersData;
   console.log('data: ', data);
 
   if (data) {

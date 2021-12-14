@@ -3,23 +3,23 @@
 import { serverDeletePhoto } from "../../api.js";
 import { getDataStorage } from "../../../localStorage.js";
 import { error } from "../../error.js";
-import errorProcessing from "../../errorProcessing.js";
+import errorProcessingBlob from "../../errorProcessingBlob.js";
 import responseDeletePhoto from "./responseDeletePhoto.js";
 
 function deletePhoto(id, formPreview) {
   console.log('deletePhoto: ');
   const form = document.querySelector('.form-add-photo');
-
+  let massage = '';
   if (formPreview.querySelector('img')) {
     const token = getDataStorage('name').tokenValue;
     const URL = getDataStorage('URL');
     serverDeletePhoto(URL, token, id)
-      .then(res => errorProcessing(res))
-      .then(responseDeletePhoto)
-      .catch(error.bind(this, form, "Photo was not delete "));
+      .then(res => massage = errorProcessingBlob(res, form))
+      .then(responseDeletePhoto.bind(this, formPreview))
+      .catch(error.bind(this, form, massage));
 
   } else {
-    formPreview.innerHTML = '';
+    formPreview.innerHTML = `<img alt='UserPhoto' class='img-avatar unnamed' src='./img/unnamed.jpg' />`;
   }
 
 

@@ -2,12 +2,13 @@
 'use strict';
 
 function sortUserData(title, data, active) {
-  console.log('title: ', title);
   console.log('sortUserData: ');
   if (active) {
-    return data.sort((a, b) => b[title].localeCompare(a[title]));
+    data.users.sort((a, b) => b[title].localeCompare(a[title]));
+    return data;
   }
-  return data.sort((a, b) => a[title].localeCompare(b[title]));
+  data.users.sort((a, b) => a[title].localeCompare(b[title]));
+  return data;
 
 }
 

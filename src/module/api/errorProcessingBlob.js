@@ -1,8 +1,11 @@
 /* eslint-disable strict */
 'use strict';
+
 import addStatus from "../addStatus.js";
 
-const errorProcessing = (form, res) => {
+const errorProcessingBlob = (res, form) => {
+  console.log('form: ', form);
+  console.log('res: ', res);
 
   if (res.status === 500) {
     //get msg from json localizedmsg
@@ -15,7 +18,7 @@ const errorProcessing = (form, res) => {
     return;
   }
 
-  return res.text();
+  return res.blob();
 };
 
-export default errorProcessing;
+export default errorProcessingBlob;

@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 'use strict';
 
-import { getDataStorage } from "./localStorage.js";
+import { getDataStorage, saveDataJSON } from "./localStorage.js";
 import updateData from "./api/apiUser/updateData.js";
 import routerNavigation from "./routerNavigation.js";
 import sortBtn from "./createPage/createComponent/createTable/sortData/sortBtn.js";
@@ -9,6 +9,11 @@ import details from "./createPage/createComponent/userComponent/details.js";
 import burgerMenu from './burgerMenu.js';
 import getewaysPageDetails from "./createPage/createComponent/getewaysComponent/getewaysPageDetails.js";
 import handleActiveTab from "./createPage/createComponent/userComponent/handleActiveTab.js";
+import typeDefinition from "./createPage/createComponent/userComponent/typeDefinition.js";
+import toggleNavBar from "./createPage/createComponent/createTable/toggleNavBar.js";
+import updateDataType from "./createPage/createComponent/userComponent/updateDataType.js";
+import state from "./include/state.js";
+import editUser from "./createPage/createComponent/userComponent/editUser.js";
 
 export const addListener = event => {
   const name = getDataStorage('name');
@@ -43,6 +48,11 @@ export const addListener = event => {
 
   if (target.matches('.link') || target.matches('.navigation-item') && !target.matches('.exit')) {
     const navigationItem = document.querySelectorAll('.navigation-item');
+    const filtersWrapper = document.querySelector('.filters-wrapper');
+    if (filtersWrapper) {
+      filtersWrapper.remove();
+    }
+
     let text = target.text;
 
 
@@ -58,7 +68,6 @@ export const addListener = event => {
       const navItem = target.querySelector('.navigation-item');
 
       if (navItem) {
-        console.log('navItem: ', navItem);
         navItem.classList.add('active');
         target.classList.add('active');
         text = navItem.text;
@@ -71,8 +80,8 @@ export const addListener = event => {
     title.textContent = text;
 
     if (title.textContent === "Users") {
-      const form = document.getElementById('updateUsers');
-      updateData(form);
+      toggleNavBar();
+      updateDataType();
       return;
     }
     routerNavigation();
@@ -86,19 +95,13 @@ export const addListener = event => {
     const textContent = target.textContent;
 
     if (event.target.classList.contains("filter-button")) {
-      handleActiveTab(filterButtons, event, "filter-active");
+      handleActiveTab(filterButtons, event.target, "filter-active");
       root.style.setProperty("--translate-filters-slider", targetTranslateValue);
     }
 
-    if (textContent === "Clients") {
-      //updateData = (form, page = 1, portionNumber = 1, userType = 'CLIENT')
-      updateData(form, 1, 1, "CLIENT");
-      return;
-    } else if (textContent === "Administrators") {
-      updateData(form, 1, 1, "ADMIN");
-      return;
-    } else if (textContent === "External") {
-      updateData(form, 1, 1, "EXTSYSTEM");
+    if (textContent) {
+      saveDataJSON('userType', typeDefinition(textContent));
+      updateData(form, 1, 1, typeDefinition(textContent));
       return;
     }
 
@@ -107,7 +110,6 @@ export const addListener = event => {
 
   if (target.matches('.emphasize')) {
     const emphasize = document.querySelectorAll('.emphasize');
-    console.log('emphasize: ', emphasize);
 
     emphasize.forEach(item => {
 
@@ -119,15 +121,15 @@ export const addListener = event => {
 
     if (title.textContent === "Users") {
 
-      sortBtn(target, getDataStorage('data'));
+      sortBtn(target, state.usersData);
 
     } else if (title.textContent === "Timezones") {
 
-      sortBtn(target, getDataStorage('timezones'));
+      sortBtn(target, state.timezonesData);
 
     } else if (title.textContent === "Geteways") {
 
-      sortBtn(target, getDataStorage('geteways'));
+      sortBtn(target, state.getewaysData);
 
     }
   }
@@ -138,7 +140,7 @@ export const addListener = event => {
     details(name.userId, token, target);
 
   } else if (target.matches('td') || target.matches('.img-avatar')) {
-    console.log('------------target.matches td');
+
     const row = target.closest('tr');
 
     if (row) {
@@ -154,6 +156,10 @@ export const addListener = event => {
 
     }
 
+  }
+
+  if (target.matches('#edit')) {
+    editUser();
   }
 
   burgerMenu(event);

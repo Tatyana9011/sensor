@@ -1,5 +1,7 @@
 /* eslint-disable strict */
 'use strict';
+import { pageSize } from "../include/constant.js";
+
 
 export const postData = (URL, token) => fetch(`${URL}fsh/rest/Manage/adminUsers`, {
   method: 'POST',
@@ -10,13 +12,12 @@ export const postData = (URL, token) => fetch(`${URL}fsh/rest/Manage/adminUsers`
   }
 });
 //POST /rest/Manage/users
-export const postDataUsers = (URL, token, userType = '',
-  pageSize = 10, pageNumber = 0, returnTotalCount = false, userState = '') => fetch(`
-  ${URL}fsh/rest/Manage/users?userType=${userType}&pageSize=${pageSize}&pageNumber=${pageNumber}
-  &returnTotalCount=${returnTotalCount}&userState=${userState}`, {
+export const postDataUsers = (URL, token, userType = '', pageSizeUser = pageSize,
+  pageNumber = 0, returnTotalCount = false, userState = '') => fetch(`
+${URL}fsh/rest/Manage/users?userType=${userType}&pageSize=${pageSizeUser}&pageNumber=${pageNumber}
+&returnTotalCount=${returnTotalCount}&userState=${userState}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'Accept': 'application/json',
       'FSH-AUTH-TOKEN': token
     }
@@ -63,7 +64,7 @@ ${URL}fsh/rest/Resource/deletePhoto?userId=${id}&type=AVATAR`, {
     'FSH-AUTH-TOKEN': token
   }
 });
-//
+//загрузка фото на сервер//rest/Resource/photo/e1612870ea910b7fa434b955138f5be9
 export const loadPhotoMultipart = (URL, token, data, id) => fetch(`
 ${URL}fsh/rest/Resource/loadPhotoMultipart?type=AVATAR&userId=${id}`, {
   method: 'PUT',
@@ -83,13 +84,13 @@ ${URL}fsh/rest/Resource/photo/${photoIdentifier}?FSH-AUTH-TOKEN=${token}&userId=
     'FSH-AUTH-TOKEN': token
   }
 });
-
+//http://192.168.99.244:9993/fsh/rest/Resource/rawPhotoContent?type=AVATAR&userId=5 //получаем фото с сервера
 export const rawPhotoContent = (URL, token, id) => fetch(`
 ${URL}fsh/rest/Resource/rawPhotoContent?type=AVATAR&userId=${id}`, {
   method: 'POST',
   headers: {
     "Accept": "*/*",
-    'Content-Type': 'application/octet-stream',
+    'Content-Type': 'application/json',
     'FSH-AUTH-TOKEN': token
   }
 });
@@ -98,7 +99,7 @@ export const timezonesPost = URL => fetch(`${URL}fsh/rest/System/timezones`, {
   method: 'POST',
   headers: {
     "Accept": "*/*",
-    'Content-Type': 'application/octet-stream',
+    'Content-Type': 'application/json',
   }
 });
 
@@ -107,7 +108,7 @@ export const manageDevices = (URL, token) => fetch(`${URL}fsh/rest/Manage/device
   method: 'POST',
   headers: {
     "Accept": "*/*",
-    'Content-Type': 'application/octet-stream',
+    'Content-Type': 'application/json',
     'FSH-AUTH-TOKEN': token
   }
 });

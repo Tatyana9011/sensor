@@ -11,6 +11,7 @@ function addHeadTable(title, arr, emphasize) {
   creatTr.innerHTML = ``;
 
   title.forEach((item, index) => {
+    //когда true и true тогда попадаем
     if (emphasize[index] && arr[index]) {
       return th.push(`<th class="emphasize"data-name="${arr[index]}">${item}</th>`);
     }

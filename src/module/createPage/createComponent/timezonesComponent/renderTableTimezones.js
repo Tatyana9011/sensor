@@ -1,8 +1,8 @@
 /* eslint-disable strict */
 'use strict';
 
-import { getDataStorage } from "../../../localStorage.js";
 import { lengthCorrection } from "../../timezonesPage.js";
+import state from "../../../include/state.js";
 
 function renderTableTimezones(newData) {
   console.log('renderTableTimezones: ');
@@ -11,7 +11,7 @@ function renderTableTimezones(newData) {
   if (table) {
     table.innerHTML = '';
 
-    const data = newData ? newData : getDataStorage('timezones');
+    const data = newData ? newData : state.timezonesData;
     /* ${obj.description ? `<button type="button" class="btn btn-primary">Hide</button>` :
                 `<button type="button" class="btn btn-primary">Show</button>`}
                           </td> */

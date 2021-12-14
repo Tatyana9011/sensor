@@ -1,12 +1,13 @@
 /* eslint-disable strict */
 'use strict';
+import { titleUsersToggleNavBar } from "../../../include/constant.js";
 
-function toggleNavBar(title) {
+function toggleNavBar() {
   console.log('toggleNavBar: ');
-  const toggleNavBar = document.querySelector('.toggleNavBar');
-  toggleNavBar.innerHTML = ``;
+  const toggle = document.querySelector('.toggleNavBar');
+  toggle.innerHTML = ``;
 
-  toggleNavBar.innerHTML = `
+  toggle.innerHTML = `
     <div class="filters-wrapper">
                 <ul class = "filter-tabs"> </ul>
                 <div class="filter-slider" aria-hidden="true">
@@ -17,7 +18,7 @@ function toggleNavBar(title) {
   const ul = document.querySelector('.filter-tabs');
   ul.innerHTML = ``;
 
-  title.forEach((item, index) => {
+  titleUsersToggleNavBar.forEach((item, index) => {
     const li = document.createElement('li');
     if (index === 0) {
       li.innerHTML = `<button class="filter-button filter-active" data-translate-value ="${index}" >${item}</button>`;

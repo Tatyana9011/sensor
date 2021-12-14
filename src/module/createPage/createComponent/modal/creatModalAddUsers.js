@@ -31,13 +31,19 @@ function creatModalAddUsers() {
               id="formGroupExampleInput3" placeholder="Name">
           </div>
           <div class=" w-100 mt-2">
+            <label for="formGroupExampleInput4" class="form-label">Phone</label>
+            <input name="phone" type="text" class="form-control"
+              id="formGroupExampleInput4" placeholder="Phone">
+          </div>
+          <div class=" w-100 mt-2">
             <label for="inputPassword" class="form-label">Password*</label>
             <input name="psw" type="password" class="form-control required"
               id="inputPassword" placeholder="Password">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-secondary" id='saveChanges'>Save changes</button>
+            <button type="submit" class="btn btn-outline-primary" disabled = "true" 
+            id='saveChanges'>Save changes</button>
           </div>
         </form>
       </div>

@@ -3,7 +3,7 @@
 import addStatus from './../addStatus.js';
 
 
-export const error = (form, err, str) => {
+export const error = (form, str, err) => {
   console.log('str: ', str);
   console.log('form, err: ', form, err);
   let text = '';
@@ -19,11 +19,12 @@ export const error = (form, err, str) => {
       return text;
     }
   }
-  //'Unable connect to server URL address !!!'
-  const message = text ? text : err;
-  if (form) {
-    addStatus(form, message, 60000, 'rgb(255, 100, 10)');
+
+  if (text) {
+    addStatus(form, text, 10000, 'rgb(255, 100, 10)');
     console.log(err);
+  } else if (err === `feilid tu Fetch`) {
+    addStatus(form, 'Unable connect to server URL address !!!', 10000, 'rgb(255, 100, 10)');
   } else {
     console.log(err);
   }

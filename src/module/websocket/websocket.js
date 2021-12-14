@@ -7,7 +7,6 @@ import handleMessage from "./handleMessage.js";
 
 
 export function disconnectExit(client) {
-    console.log('client: ', client);
     console.log('disconnectExit: ');
 
     if (client !== null) {
@@ -20,7 +19,6 @@ export let stompClient = null;
 
 function websocket(urlUser) {
 
-    const navigationItemExit = document.querySelector('.exit');
     const topic = getDataStorage('random');
     const urlWS = urlUser.replace(/http:\/\//, '');
     const headers = {
@@ -33,7 +31,6 @@ function websocket(urlUser) {
     if (topic) {
 
         const url = `ws://${urlWS}fsh/ws/endpoint`;
-        // let ws = new WebSocket(url);
         const connectCallback = function (frame) {
             if (frame) {
                 console.log('Connected:', frame);
@@ -54,6 +51,7 @@ function websocket(urlUser) {
 
         function messageCallback(message) {
             if (message.body) {
+                console.log('message.: ', message.body);
                 handleMessage(JSON.parse(message.body));
             } else {
                 console.log("got empty message");
@@ -67,8 +65,6 @@ function websocket(urlUser) {
 
         waitForConnection();
     }
-
-    //navigationItemExit.addEventListener('click', disconnectExit.bind(this, stompClient));
 
 }
 export default websocket;

@@ -8,13 +8,11 @@ import { saveDataJSON } from './localStorage.js';
 
 function logIn(topic) {
   console.log('topic: ', topic);
-  console.log('logIn: ');
 
   const form = document.querySelector('form[name="authorization"]');
 
   if (topic) {
     saveDataJSON('random', topic);
-
     validateBlur(form);
 
     form.addEventListener('input', inputValidate);

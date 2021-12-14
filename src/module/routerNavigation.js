@@ -10,12 +10,19 @@ import addHeadTable from "./createPage/createComponent/createTable/addHeadTable.
 import createTable from "./createPage/createComponent/createTable/createTable.js";
 import inputGroupSearch from "./createPage/createComponent/createTable/inputGroupSearch.js";
 import sendFormTimezones from "./api/apiTimezones/sendFormTimezones.js";
-import { getDataStorage, saveDataJSON } from "./localStorage.js";
+import { saveDataJSON } from "./localStorage.js";
 import eventListener from "./eventListener.js";
 import sendFormGeteways from "./api/apiGeteways/sendFormGeteways.js";
+import {
+  addTextHeadClients, arrClients,
+  titleSearchClients, dataAtrClients,
+  addTextHeadAdmin, arrAdmin,
+  titleSearchAdmin, dataAtrAdmin, arrClassUsers
+} from './include/constant.js';
+import state from "./include/state.js";
+
 
 function routerNavigation(data, page = 1, portionNumber = 1) {
-  console.log('data: ', data);
   console.log('----------------------------routerNavigation: ');
 
   const content = document.querySelector('.content');
@@ -27,30 +34,35 @@ function routerNavigation(data, page = 1, portionNumber = 1) {
 
     saveDataJSON('location', 'Users');
 
-    const arrClass = ['col-sm-12', 'col-xl-12', 'tableUsers'];
+    const arrClass = arrClassUsers;
     let addTextHead = [];
     let arr = [];
     let titleSearch = [];
     let dataAtr = [];
 
-    const newData = data ? data : getDataStorage('data');
+    const newData = data ? data : state.usersData;
     const userStatus = newData.users[0].type;
+    const formAddPhoto = document.querySelector('.form-add-photo');
 
+    if (formAddPhoto) {
+      const btn = formAddPhoto.querySelector('button[type="submit"]');
+      btn.setAttribute('disabled', true);
+      btn.classList.remove('btn-primary');
+      btn.classList.add('btn-outline-primary');
+    }
 
     content.innerHTML = '';
 
     if (userStatus === "CLIENT" || userStatus === "EXTSYSTEM") {
-      addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`, 'Created', 'Login',
-        'State', 'Name', 'email', 'phone', 'type'];
-      arr = [0, 0, 1, 1, 1, 1, 0, 0, 0];
-      titleSearch = ['Login', 'UserStat'];
-      dataAtr = ['', '', 'created', 'login', 'userStat', 'name', '', '', ''];
+      addTextHead = addTextHeadClients;
+      arr = arrClients;
+      titleSearch = titleSearchClients;
+      dataAtr = dataAtrClients;
     } else if (userStatus === "ADMIN") {
-      addTextHead = ['#', `<input id='removeAll' type="checkbox"></input>`, 'Photo', 'Login',
-        'Name', 'created', 'updated'];
-      arr = [0, 0, 0, 1, 1, 1, 1];
-      titleSearch = ['Login', 'Created', 'Updated'];
-      dataAtr = ['', '', '', 'login', 'name', 'created', 'updated'];
+      addTextHead = addTextHeadAdmin;
+      arr = arrAdmin;
+      titleSearch = titleSearchAdmin;
+      dataAtr = dataAtrAdmin;
     }
 
     const usersTable = createTable(arrClass);
