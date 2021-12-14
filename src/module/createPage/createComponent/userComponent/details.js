@@ -11,8 +11,6 @@ import errorProcessingBlob from "../../../api/errorProcessingBlob.js";
 import state from "../../../include/state.js";
 
 function details(id, token, target) {
-  console.log('id, token, target: ', id, token, target);
-  console.log('details: ');
   const data = state.usersData;
   const modalDialog = document.querySelector('.modal-dialog');
 
@@ -32,7 +30,7 @@ function details(id, token, target) {
   const user = data.users.find(item => +item.id === +id);
 
   const formImage = document.getElementById('formImage');
-  console.log('formImage: ', formImage);
+
   formImage.addEventListener('change', e => {
     e.preventDefault();
     uploadFile(formImage.files[0], content, id, token, target);

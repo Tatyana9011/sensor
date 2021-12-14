@@ -7,12 +7,11 @@ import handleMessage from "./handleMessage.js";
 
 
 export function disconnectExit(client) {
-    console.log('disconnectExit: ');
 
     if (client !== null) {
         client.disconnect();
     }
-    console.log("Disconnected");
+
 }
 
 export let stompClient = null;
@@ -21,17 +20,12 @@ function websocket(urlUser) {
 
     const topic = getDataStorage('random');
     const urlWS = urlUser.replace(/http:\/\//, '');
-    const headers = {
-        /* login: 'ghbdtn',
-        passcode: 'ghbdtn',
-        // additional header
-        'client-id': '42' */
-    };
+    const headers = {};
 
     if (topic) {
 
         const url = `ws://${urlWS}fsh/ws/endpoint`;
-        const connectCallback = function (frame) {
+        const connectCallback = function(frame) {
             if (frame) {
                 console.log('Connected:', frame);
             }
@@ -59,7 +53,6 @@ function websocket(urlUser) {
         };
 
         function subscribeClient() {
-            console.log('subscribe: ');
             stompClient.subscribe(`/topic/notifications/${topic}`, messageCallback, { ack: 'client' });
         }
 

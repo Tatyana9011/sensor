@@ -8,8 +8,6 @@ import handleActiveTab from "./handleActiveTab.js";
 import pageNow from "../assets/pageNow.js";
 
 const updateDataType = () => {
-  console.log('updateDataType: ');
-
   const form = document.getElementById('updateUsers');
   const userType = getDataStorage('userType');
 

@@ -7,8 +7,6 @@ import responseError from "../responseError.js";
 import state from "../../include/state.js";
 
 function resultEnd(form, page = 1, portionNumber = 1, data) {
-  console.log('resultEnd: ');
-
   const login = document.querySelector('.login');
   const newData = JSON.parse(data);
 
@@ -29,18 +27,15 @@ function resultEnd(form, page = 1, portionNumber = 1, data) {
     });
 
     state.usersData = newData;
-    console.log('newData: ', newData);
+
     routerNavigation(newData, page, portionNumber);
 
     const body = document.querySelector('body');
     body.style.overflowY = "scroll";
 
   } else {
-    console.log('-----error');
     addStatus(form, data, 20000, 'rgb(255, 100, 10)');
   }
-
-
 }
 
 export default resultEnd;

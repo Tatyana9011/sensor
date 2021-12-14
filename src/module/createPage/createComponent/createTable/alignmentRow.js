@@ -2,7 +2,6 @@
 'use strict';
 
 function alignmentRow() {
-  console.log('alignmentRow: ');
   const table = document.querySelector('table');
   if (table) {
     const tbody = document.querySelector('tbody').children;

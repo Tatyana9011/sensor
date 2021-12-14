@@ -7,7 +7,6 @@ import errorProcessingBlob from "../../errorProcessingBlob.js";
 import responseDeletePhoto from "./responseDeletePhoto.js";
 
 function deletePhoto(id, formPreview) {
-  console.log('deletePhoto: ');
   const form = document.querySelector('.form-add-photo');
   let massage = '';
   if (formPreview.querySelector('img')) {
@@ -21,8 +20,6 @@ function deletePhoto(id, formPreview) {
   } else {
     formPreview.innerHTML = `<img alt='UserPhoto' class='img-avatar unnamed' src='./img/unnamed.jpg' />`;
   }
-
-
 }
 
 export default deletePhoto;

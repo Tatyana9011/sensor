@@ -21,7 +21,7 @@ function creatModalDetails(target) {
     phone = user[0].phone;
     email = user[0].email;
     login = user[0].login;
-    avatar = user[0].avatarUrl
+    avatar = user[0].avatarUrl;
 
     if (name) {
       nameUser = name;

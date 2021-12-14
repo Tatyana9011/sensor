@@ -2,8 +2,6 @@
 'use strict';
 
 function createTable(addClass, pages = true) {
-  console.log('createTable ');
-
   const div = document.createElement('div');
   div.classList.add(...addClass);
   div.innerHTML = `

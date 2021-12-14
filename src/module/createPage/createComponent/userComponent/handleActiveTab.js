@@ -3,7 +3,6 @@
 
 
 const handleActiveTab = (tabs, target, className) => {
-  console.log('handleActiveTab: ');
   tabs.forEach(tab => {
     tab.classList.remove(className);
   });

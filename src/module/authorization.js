@@ -7,7 +7,6 @@ import inputValidate from './inputValidate.js';
 import { saveDataJSON } from './localStorage.js';
 
 function logIn(topic) {
-  console.log('topic: ', topic);
 
   const form = document.querySelector('form[name="authorization"]');
 

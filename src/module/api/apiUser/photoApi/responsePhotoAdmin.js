@@ -4,11 +4,6 @@
 import addStatus from "../../../addStatus.js";
 import responseError from "../../responseError.js";
 const responsePhotoAdmin = (form, dataImg) => {
-  console.log('formAddPhoto: ', form);
-  console.log('id, dataImg: ', dataImg);
-  console.log('responsePhoto: ');
-  // const data = dataImg.Error;
-
   if (dataImg && responseError(form, dataImg)) {
     const imageAvatar = document.querySelector('.avatar');
     const reader = new FileReader();
@@ -28,7 +23,6 @@ const responsePhotoAdmin = (form, dataImg) => {
     reader.readAsDataURL(dataImg);
 
   } else {
-
     addStatus(form, `Фото не пришло с сервера`, 10000, 'rgb(255, 100, 10)');
     console.log('----e.target.result фото не пришло с сервера');
   }

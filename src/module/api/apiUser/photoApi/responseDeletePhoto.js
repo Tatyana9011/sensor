@@ -3,9 +3,7 @@
 
 import updateDataType from "../../../createPage/createComponent/userComponent/updateDataType.js";
 
-const responseDeletePhoto = (formPreview, data) => {
-  console.log('responseDeletePhoto: ');
-
+const responseDeletePhoto = formPreview => {
   formPreview.innerHTML = `<img alt='UserPhoto' class='img-avatar unnamed' src='./img/unnamed.jpg' />`;
 
   updateDataType();

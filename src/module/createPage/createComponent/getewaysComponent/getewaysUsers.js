@@ -16,8 +16,6 @@ import {
 } from "../../../include/constant.js";
 
 function getewaysUsers(data) {
-  console.log('getewaysUsers ');
-
   if (JSON.parse(data).errorKey) {
     responseError(null, data);
   } else {
@@ -59,8 +57,6 @@ function getewaysUsers(data) {
       for (let i = 0; i < thead.length; i++) {
         thead[i].style.fontSize = '14px';
       }
-    } else if (window.innerWidth < 700) {
-      console.log('window.innerWidth < 700: ');
     }
 
     inputGroupSearch(titleSearch, getData);

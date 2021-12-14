@@ -5,8 +5,6 @@ import renderTableTimezones from "../timezonesComponent/renderTableTimezones.js"
 import { init } from "../../../init.js";
 
 const inputGroupSearch = (title, data) => {
-  console.log('inputGroupSearch');
-
   const inputGroup = document.querySelector('.input-group');
   const dropdownMenu = document.querySelector('.dropdown-menu');
   const titlePage = document.getElementById('title-page');
@@ -39,7 +37,6 @@ const inputGroupSearch = (title, data) => {
 
       });
     };
-
 
     inputGroup.addEventListener('click', event => {
       const target = event.target;
@@ -77,7 +74,6 @@ const inputGroupSearch = (title, data) => {
         }
 
       } else if (!input.value && target.matches('.form-control') && titlePage.textContent === "Timezones") {
-        console.log('form-control: ');
 
         addListener('description', renderTableTimezones);
 

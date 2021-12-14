@@ -28,7 +28,6 @@ export const addListener = event => {
   const title = document.getElementById('title-page');
   const location = getDataStorage('location');
   const target = event.target;
-  console.log('target: ', target);
 
   let count = 0;
 
@@ -104,9 +103,7 @@ export const addListener = event => {
       updateData(form, 1, 1, typeDefinition(textContent));
       return;
     }
-
   }
-
 
   if (target.matches('.emphasize')) {
     const emphasize = document.querySelectorAll('.emphasize');
@@ -135,7 +132,6 @@ export const addListener = event => {
   }
 
   if (target.matches('.avatar')) {
-    console.log('-----------------target.matcheavatar');
 
     details(name.userId, token, target);
 
@@ -153,9 +149,7 @@ export const addListener = event => {
         getewaysPageDetails();
 
       }
-
     }
-
   }
 
   if (target.matches('#edit')) {

@@ -10,7 +10,6 @@ import addPhotoUsers from "./addPhotoUsers.js";
 import modal from "../../modal.js";
 
 const outputData = (form, body, topic, data) => {
-  console.log('outputData: ');
   if (JSON.parse(data).userState === "WRONG_HUB") {
 
     const message = "WRONG_HUB";

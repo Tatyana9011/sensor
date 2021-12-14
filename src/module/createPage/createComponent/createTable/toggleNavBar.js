@@ -3,7 +3,6 @@
 import { titleUsersToggleNavBar } from "../../../include/constant.js";
 
 function toggleNavBar() {
-  console.log('toggleNavBar: ');
   const toggle = document.querySelector('.toggleNavBar');
   toggle.innerHTML = ``;
 

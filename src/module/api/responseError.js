@@ -4,7 +4,6 @@ import addStatus from "../addStatus.js";
 import modal from "../modal.js";
 
 const responseError = (form, str) => {
-  console.log('responseError: ');
   const button = form.querySelector('button[type="submit"]');
 
   if (button) {
@@ -28,8 +27,6 @@ const responseError = (form, str) => {
       return false;
     }
   } else if (str === 'true' && modalOpen) {
-    console.log('str === : ');
-
     const modalBackdrop = document.querySelector('.modal-backdrop');
     modalBackdrop.remove();
     modalOpen.remove();
@@ -38,7 +35,6 @@ const responseError = (form, str) => {
     const sensor = document.querySelector('.sensor');
     sensor.append(modal());
   }
-
   return true;
 };
 

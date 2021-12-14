@@ -4,7 +4,6 @@
 import addStatus from './addStatus.js';
 
 const validateBlur = form => {
-  console.log('validateBlur: ');
   const allInput = form.querySelectorAll('input'),
     login = document.getElementById('login'),
     btnSaveChanges = form.querySelector('button[type="submit"]');

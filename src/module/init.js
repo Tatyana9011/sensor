@@ -12,7 +12,6 @@ import renderTableAdmin from './createPage/createComponent/userComponent/renderT
 
 
 export const init = (data, page = 1, portionNumber = 1, userStatus = "CLIENT") => {
-  console.log('init: ');
   if (userStatus === "CLIENT" || userStatus === "EXTSYSTEM") {
     renderTableClient(data);
   } else if (userStatus === "ADMIN") {

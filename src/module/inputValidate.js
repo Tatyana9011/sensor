@@ -4,7 +4,6 @@
 import addStatus from "./addStatus.js";
 
 function inputValidate(event) {
-  console.log('inputValidate: ');
   const target = event.target,
     login = document.getElementById('login'),
     form = target.closest('form'),
@@ -14,8 +13,6 @@ function inputValidate(event) {
     allInput = form.querySelectorAll('input'),
     newInput = [],
     button = form.querySelector('button[type="submit"]');
-
-  console.log('btnSaveChanges: ', btnSaveChanges);
 
   if (button) {
     button.classList.add('btn-primary');
@@ -71,8 +68,6 @@ function inputValidate(event) {
   };
 
   removeDisableLoginBtn(newInput.length === allInput.length);
-  console.log('allInput.length: ', allInput.length);
-  console.log('newInput.length: ', newInput.length);
 
   if (inputURL) {
     if (inputURL.value === '/') {

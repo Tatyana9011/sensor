@@ -4,9 +4,7 @@
 import submitPhoto from "./submitPhoto.js";
 import formPreview from "./formPreview.js";
 
-function uploadFile(file, content, id, token, target) {
-  console.log('uploadFile: ');
-
+function uploadFile(file, content, id, token) {
   const formImage = document.getElementById('formImage');
   const form = document.querySelector('.form-add-photo');
   const saveChanges = document.getElementById('saveChanges');

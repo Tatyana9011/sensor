@@ -8,13 +8,11 @@ import { error } from "../error.js";
 import errorProcessingBlob from "../errorProcessingBlob.js";
 
 function addPhotoUsers(form) {
-  console.log('form: ', form);
-  console.log('addPhotoUsers: ');
   const name = getDataStorage('name');
   let message = '';
 
   const URL = getDataStorage('URL');
-  //URL, token, id //получаем фото с сервера
+
   rawPhotoContent(URL, name.tokenValue, name.userId)
     .then(res => message = errorProcessingBlob(res, form))
     .then(responsePhotoAdmin.bind(this, form))

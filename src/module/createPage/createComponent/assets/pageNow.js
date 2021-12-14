@@ -20,7 +20,6 @@ function pageNow() {
     actionPage.portionNumber = Math.ceil(actionPage.page / portionSize);
   }
 
-  console.log('actionPage: ', actionPage);
   return actionPage;
 
 }

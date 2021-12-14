@@ -8,7 +8,6 @@ function renderTable(newData) {
   table.innerHTML = '';
 
   const data = newData ? newData : state.usersData;
-  console.log('data: ', data);
 
   if (data) {
     const ollTr = data.users.map((obj, index) => {

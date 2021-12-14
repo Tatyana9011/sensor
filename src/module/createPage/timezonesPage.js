@@ -19,7 +19,6 @@ import {
 } from "../include/constant.js";
 
 export const lengthCorrection = dataItem => {
-  console.log('lengthCorrection: ');
   if (window.innerWidth < 990) {
     if (dataItem.description.length > 16) {
       dataItem.description = dataItem.description.replace(/\//, '/<br/>');
@@ -35,9 +34,7 @@ export const lengthCorrection = dataItem => {
 };
 
 function timezonesPage(data) {
-
   if (!JSON.parse(data).errorKey) {
-    console.log('timezonesPage: ');
     state.timezonesData = JSON.parse(data);
     const addTextHead = addTextHeadTimezones;
     const arr = arrTimezones;
@@ -67,8 +64,6 @@ function timezonesPage(data) {
       for (let i = 0; i < thead.length; i++) {
         thead[i].style.fontSize = '14px';
       }
-    } else if (window.innerWidth < 700) {
-      console.log('window.innerWidth: ');
     }
 
     inputGroupSearch(titleSearch, getData);

@@ -2,8 +2,6 @@
 'use strict';
 
 function getewaysManageDevices(data) {
-  console.log('getewaysManageDevices');
-
   const table = document.querySelector('tbody');
   if (table) {
     table.innerHTML = '';

@@ -9,7 +9,6 @@ import getewaysManageDevices from "../../getewaysComponent/getewaysManageDevices
 import pageNow from "../../assets/pageNow.js";
 
 function sortBtn(target, data) {
-  console.log('sortBtn: ');
   const location = getDataStorage('location');
   const userType = getDataStorage('userType');
   target.classList.add('btnFilter');
@@ -23,10 +22,8 @@ function sortBtn(target, data) {
 
 
     if (location === "Users") {
-      //newData, page, portionNumber, userStatus
 
       init(newData, +objPagenate.page, objPagenate.portionNumber, userType);
-
 
     } else if (location === "Timezones") {
 

@@ -6,7 +6,6 @@ import updateData from '../../../api/apiUser/updateData.js';
 import { pageSize, portionSize } from "../../../include/constant.js";
 
 function paginator(data, currentPage = 1, portionNumber = 1, pageSizeUser = pageSize, portionSizeUser = portionSize) {
-  console.log('paginator: ');
   const paginateButton = document.getElementById('paginate_button');
   const dataTablesPaginate = document.querySelector('.dataTables_paginate');
   const next = dataTablesPaginate.querySelector('.next');
@@ -19,9 +18,6 @@ function paginator(data, currentPage = 1, portionNumber = 1, pageSizeUser = page
     totalItemsCount = data.totalCount;
   }
 
-  //номер порции
-  //let portionNumber = 1;
-  //сколько всего страниц
   const pageCount = Math.ceil(totalItemsCount / pageSizeUser);
 
   if (!document.querySelector('.page')) {
@@ -37,10 +33,6 @@ function paginator(data, currentPage = 1, portionNumber = 1, pageSizeUser = page
   if (portionNumber >= portionCount) {
     next.classList.add('visually-hidden');
   }
-  /* if (portionNumber === 1 && pages.length > portionSizeUser) {
-    next.classList.remove('visually-hidden');
-    // next.removeAttribute('disabled');
-  } */
 
   dataTablesPaginate.addEventListener('click', event => {
     event.preventDefault();

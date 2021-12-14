@@ -2,7 +2,6 @@
 'use strict';
 
 function sortUserData(title, data, active) {
-  console.log('sortUserData: ');
   if (active) {
     data.users.sort((a, b) => b[title].localeCompare(a[title]));
     return data;

@@ -23,12 +23,8 @@ import state from "./include/state.js";
 
 
 function routerNavigation(data, page = 1, portionNumber = 1) {
-  console.log('----------------------------routerNavigation: ');
-
   const content = document.querySelector('.content');
   const titlePage = document.getElementById('title-page');
-
-
 
   if (titlePage.textContent === "Users") {
 
@@ -39,7 +35,6 @@ function routerNavigation(data, page = 1, portionNumber = 1) {
     let arr = [];
     let titleSearch = [];
     let dataAtr = [];
-
     const newData = data ? data : state.usersData;
     const userStatus = newData.users[0].type;
     const formAddPhoto = document.querySelector('.form-add-photo');

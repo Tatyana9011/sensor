@@ -8,7 +8,6 @@ import addInputDetails from "./addInputDetails.js";
 import { inputDetails } from "../../../include/constant.js";
 
 function editUser() {
-  console.log('editUser: ');
   const form = document.querySelector('.form-add-photo');
   const inputs = document.querySelectorAll('.details-users-value');
   const btnEdit = document.getElementById('edit');

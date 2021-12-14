@@ -8,8 +8,6 @@ import errorProcessingBlob from '../../errorProcessingBlob.js';
 import responseError from '../../responseError.js';
 
 const getPhoto = (form, body, id, token) => {
-  console.log('getPhoto: ');
-
   const URL = getDataStorage('URL');
   let message = '';
   loadPhotoMultipart(URL, token, body, id)

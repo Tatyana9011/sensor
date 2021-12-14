@@ -6,10 +6,6 @@ import formPreview from "../../../createPage/createComponent/userComponent/formP
 import responseError from "../../responseError.js";
 
 const responsePhoto = (id, formAddPhoto, dataImg) => {
-  console.log('formAddPhoto: ', formAddPhoto);
-  console.log('id, dataImg: ', id, dataImg);
-  console.log('responsePhoto: ');
-
   if (dataImg && responseError(formAddPhoto, dataImg)) {
     const imageAvatar = document.querySelector('.avatar');
     const reader = new FileReader();
