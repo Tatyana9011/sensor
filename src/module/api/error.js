@@ -20,7 +20,7 @@ export const error = (form, str, err) => {
   if (text) {
     addStatus(form, text, 10000, 'rgb(255, 100, 10)');
     console.log(err);
-  } else if (err.TypeError === `Failed to fetch`) {
+  } else if (err === `TypeError: Failed to fetch`) {
     console.log('err: ', err);
     addStatus(form, 'Unable connect to server URL address !!!', 10000, 'rgb(255, 100, 10)');
   } else {

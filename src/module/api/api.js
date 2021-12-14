@@ -22,7 +22,7 @@ ${URL}fsh/rest/Manage/users?userType=${userType}&pageSize=${pageSizeUser}&pageNu
       'FSH-AUTH-TOKEN': token
     }
   });
-//`https://testfsh.friendly-tech.com:10356/fsh/rest/System/generateRandom`
+
 export const generateRandom = () => fetch(`https://testfsh.friendly-tech.com:10356/fsh/rest/System/generateRandom`, {
   method: 'POST'
 });
@@ -84,7 +84,7 @@ ${URL}fsh/rest/Resource/photo/${photoIdentifier}?FSH-AUTH-TOKEN=${token}&userId=
     'FSH-AUTH-TOKEN': token
   }
 });
-//http://192.168.99.244:9993/fsh/rest/Resource/rawPhotoContent?type=AVATAR&userId=5 //получаем фото с сервера
+
 export const rawPhotoContent = (URL, token, id) => fetch(`
 ${URL}fsh/rest/Resource/rawPhotoContent?type=AVATAR&userId=${id}`, {
   method: 'POST',
