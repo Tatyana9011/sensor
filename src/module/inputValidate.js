@@ -57,13 +57,16 @@ function inputValidate(event) {
       button.removeAttribute('disabled');
       if (login) {
         login.removeAttribute('disabled');
+        btnSaveChanges.classList.remove('btn-secondary');
+        btnSaveChanges.classList.add('btn-primary');
       }
     } else {
       if (login) {
         login.setAttribute('disabled', 'true');
+      } else {
+        btnSaveChanges.classList.add('btn-outline-primary');
+        btnSaveChanges.classList.remove('btn-primary');
       }
-      btnSaveChanges.classList.add('btn-outline-primary');
-      btnSaveChanges.classList.remove('btn-primary');
     }
   };
 
